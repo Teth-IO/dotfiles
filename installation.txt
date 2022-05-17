@@ -166,6 +166,7 @@ reboot
 sudo systemctl start sshd 
 
 ####Installation du rice et des utilitaires
+!!!!je n'installe pas de display manager
 
 !!tout installer en utilisateur
 
@@ -212,6 +213,9 @@ pacman -S helvum
 
 //copier coller le dépot vers ~
 //a tester: decommenter temperature dans waybar
+
+reboot
+après l'identification entré sway pour charger l'interface graphique
 
 #pour les jeux voir steam, wine, lutris, heroic, legendary...
 -> indice: activer le support proton dans steam
