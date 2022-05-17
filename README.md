@@ -29,7 +29,7 @@ Utilitaires:
 - Clendrier: Khal
 - To-dos: todoman
 
-Todo: configurer neovim
+Todo: configurer neovim, corriger l'erreur zshenv
 
 [installation de a à z](installation.txt)
 
