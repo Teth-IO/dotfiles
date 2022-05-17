@@ -50,9 +50,6 @@
             "format": "{name}",
             "disable-scroll": true,
             "all-outputs": true
-		},
-		//"temperature"; {
-        //    "format": "{temperatureC}°C "
-        }
+		}
     }
 }
