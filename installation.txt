@@ -205,6 +205,7 @@ enable
 git clone https://aur.archlinux.org/wpaperd.git
 cd wpaperd
 makepkg -si
+//modifier le fichier output.conf avec les bons paramètres
 
 #gestionnaire de son
 pacman -S helvum
