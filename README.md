@@ -29,5 +29,7 @@ Utilitaires:
 - Clendrier: Khal
 - to-dos: todoman
 
+Todo: configurer neovim
+
 ![Screenshot 1](./Images/1.png)
 ![Screenshot 2](./Images/2.png)
