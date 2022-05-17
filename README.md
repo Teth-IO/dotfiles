@@ -1,11 +1,10 @@
 # dotfiles
 
-Mon envionnement de travail Arch.
+Mon envionnement de travail ArchLinux sous Wayland.
 Minimaliste, simple et efficace. 
 
-###Wayland:
 
-####Eléments principaux:
+Eléments principaux:
   
 - Gestionnaire de fenêtre: sway
 - Bar de status: waybar
@@ -14,7 +13,7 @@ Minimaliste, simple et efficace.
 - Ecran de verouillage: swaylock-effect
 - Police de caractère: FiraCode Nerd Font
   
-####Utilitaires:
+Utilitaires:
   
 - Terminal: kitty
 - shell: zsh avec prezto et spaceship
