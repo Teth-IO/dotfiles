@@ -29,5 +29,5 @@ Utilitaires:
 - Clendrier: Khal
 - to-dos: todoman
 
-(./images/1.png)
-(./images/2.png)
+![Screenshot 1](./images/1.png)
+![Screenshot 2](./images/2.png)
