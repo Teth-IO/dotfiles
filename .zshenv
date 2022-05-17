@@ -38,6 +38,3 @@ export FZF_DEFAULT_OPTS='
     --color=marker:-1
     --color=spinner:-1
     --color=border:#A4B9EF'
-
-# buku colors
-export BUKU_COLORS='hEhhf'
