@@ -18,7 +18,6 @@ window#waybar {
   	padding-bottom: 1px;
   	padding-top: 1px;
 }
-/* center module */
 #clock {
   margin: 2px 0px 2px 0px;
   color: #66D9E2;
@@ -27,14 +26,12 @@ window#waybar {
   background-color: @bg1;
 }
 
-/* right module */
 #pulseaudio,
-#custom-bluetooth,
 #network,
 #disk,
 #memory,
 #cpu,
-#backlight,
+#temperature,
 #battery {
   color: @font;
   margin: 2px 0px 2px 0px;
