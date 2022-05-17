@@ -31,5 +31,7 @@ Utilitaires:
 
 Todo: configurer neovim
 
+(installation.txt)
+
 ![Screenshot 1](./Images/1.png)
 ![Screenshot 2](./Images/2.png)
