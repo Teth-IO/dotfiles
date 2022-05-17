@@ -161,7 +161,7 @@ sudo pacman -S --needed base-devel
 
 reboot
 
-#démarrer sur l'os nouvellement installer
+#démarrer sur l'os nouvellement installé
 
 sudo systemctl start sshd 
 
@@ -201,14 +201,13 @@ sudo pacman -S neomutt todoman khal
 pacman -S networkmanager
 enable
 
-#fond d'ecran -> wpaperd
+#daemon de fond d'ecran: wpaperd
 git clone https://aur.archlinux.org/wpaperd.git
 cd wpaperd
 makepkg -si
 
-#son et autres
-pacman -S pipewire helvum pipewire-pulseaudio
-->choisir plumber
+#gestionnaire de son
+pacman -S helvum
 
 //copier coller le dépot vers ~
 //a tester: decommenter temperature dans waybar
