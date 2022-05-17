@@ -29,7 +29,10 @@ Utilitaires:
 - Clendrier: Khal
 - To-dos: todoman
 
-Todo: configurer neovim, neomutt, todoman et khal. corriger l'erreur zshenv
+Todo: 
+    configurer neovim, neomutt, todoman et khal.  
+    corriger les erreurs zshenv et zshrc  
+    trouver un gestionnaire audio pour waybar
 
 [installation de a à z](installation.txt)
 
