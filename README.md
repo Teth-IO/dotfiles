@@ -8,7 +8,7 @@ Eléments principaux:
   
 - Gestionnaire de fenêtre: sway
 - Bar de status: waybar
-- lanceur d'application: wofi
+- Lanceur d'application: wofi
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 - Police de caractère: FiraCode Nerd Font
@@ -16,18 +16,18 @@ Eléments principaux:
 Utilitaires:
   
 - Terminal: kitty
-- shell: zsh avec prezto et spaceship
+- Shell: zsh avec prezto et spaceship
 - Gestionnaire de fichier: ranger
 - Navigateur: firefox
 - Editeur de texte: neovim
 - Traitement de texte: libreoffice
-- moniteur système: htop
+- Moniteur système: htop
 - Visionneuse de documents: zathura  
 - Visionneuse d'image: imv
 - Lecteur multimédia: mpv
 - Client mail: neomutt
 - Clendrier: Khal
-- to-dos: todoman
+- To-dos: todoman
 
 Todo: configurer neovim
 
