@@ -1,0 +1,58 @@
+{
+	"layer": "top",
+		"position": "top",
+		"modules-left": ["sway/workspaces", "sway/mode"],
+		"modules-center": ["sway/window"],
+		"modules-right": ["network", "pulseaudio", "memory", "cpu", "temperature", "battery", "clock"],
+		"clock": {
+			"format": "{:%H:%M}",
+			"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+		},
+		"cpu": {
+			"format": "{usage}% ",
+			"tooltip": true
+		},
+		"memory": {
+			"format": "{}% ",
+            "tooltip": true
+		},
+		"network": {
+			"format-wifi": "{essid} {ipaddr}",
+			"format-ethernet": "{ifname} {ipaddr}",
+			"format-disconnected": "N/A",
+            "tooltip-format-wifi": "{signalStrength}%|Rx:{bandwidthDownBits}|Tx{bandwidthUpBits}",
+            "tooltip-format-ethernet": "Rx:{bandwidthDownBits}|Tx:{bandwidthUpBits}",
+			"on-click": "kitty nmcli"
+		},
+		"pulseaudio": {
+			"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+            "format": "{volume}% {icon}",
+			"format-muted": "婢",
+			"format-icons": {
+				"headphone": "",
+				"hands-free": "",
+				"headset": "",
+				"default": ["", ""],
+            },
+            "on-click-right": "helvum",
+        },
+		"battery": {
+            "states": {
+                "warning": 30,
+                "critical": 15
+                },
+            "format": "{capacity} {icon}",
+            "format-icons": ["", "", "", "", ""],
+            "format-charging": "{capacity} {icon}ﮣ",
+            "max-length": 25
+        },
+		"sway/workspaces": {
+            "format": "{name}",
+            "disable-scroll": true,
+            "all-outputs": true
+		},
+		//"temperature"; {
+        //    "format": "{temperatureC}°C "
+        }
+    }
+}

@@ -1,0 +1,255 @@
+####Installation du système de base
+
+#avant de faire quoique ce soit :
+
+faire ip a
+trouver ou changer le mdp root
+et se ssh (tous ça pour copier coller)
+
+#partitionnement des disques :
+
+//On part sur un UEFI/GPT avec chiffrement de la parition principal et LVM
+//le swap sera ici une partition du double du nombre de Gb de RAM
+//shema du partitionnement :
+/dev/sda
+|--> /boot          /dev/sda1 EFI        boot 512 MB fat32     GRUB, kernel et EFI
+|--> LUKS encrypted /dev/sda2 linux fs        100%   encrypted block device chiffré
+     |-->  LVM                           lvm  100%
+           |--> /                        root 25%    ext4      Tous les fichiers systèmes
+           |--> /home                    home 75%    ext4      fichiers utilisateurs
+
+cfdisk
+//choisir gpt et entrer les partition sda1 à 3
+write
+
+#formatage, chiffrement création du LVM:
+!!!le mot de passe doit être saissie comme si on utilisait un clavier qwerty
+
+mkfs.fat -F 32 /dev/sda1
+cryptsetup luksFormat --type luks1 --use-random -S 1 -s 512 -h sha512 -i 5000 /dev/sda2
+cryptsetup open /dev/sda2 cryptlvm
+pvcreate /dev/mapper/cryptlvm
+vgcreate vg /dev/mapper/cryptlvm
+lvcreate -L (nb de giga)G vg -n root
+lvcreate -l 100%FREE vg -n home
+mkfs.ext4 /dev/vg/root
+mkfs.ext4 /dev/vg/home
+
+#montage:
+
+mount /dev/vg/root /mnt
+mount --mkdir /dev/vg/home /mnt/home
+mount --mkdir /dev/sda1 /mnt/boot
+
+#selection des mirroirs du gestionnaire de paquets
+
+reflector --country France --age 12 --sort rate --save /etc/pacman.d/mirrorlist
+//ignorer les erreurs 403
+
+#installation du système de base
+!!!on peut git clone le repository  et modifier le script pacstrap
+!!!util pour installer les bons driver (nouveau, ou proprio -> régler il y a 5 mois ; buffer api GBM -> ok)
+!!!tester qtile ou river si aucun résultat probant -> AMD
+!!!modifier le directory de grub
+
+pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 vim dhcpcd wpa_supplicant
+
+#entrer dans le nouveau système
+
+arch-chroot /mnt
+
+#swapfile
+
+//taille du swap = racine carré de la RAM
+dd if=/dev/zero of=/swapfile bs=1M count=(valeur en MiB e.g. 4096 pour 4G) status=progress
+chmod 0600 /swapfile
+mkswap -U clear /swapfile
+swapon /swapfile
+
+#montage automatique des partitions
+
+genfstab -U /mnt >> /mnt/etc/fstab
+//remplacer les "rw, relatime" par "noatime"
+//le swapfile doit être comme suit
+/swapfile none swap sw 0 0
+
+#fuseau horaire
+
+ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+hwclock --systohc
+
+#locales
+
+pacman -S vim
+vim /etc/locale.gen
+//dé-commenter fr_FR UTF-8
+locale-gen
+vim /etc/locale.conf
+//entrer LANG=fr_FR@euro
+vim /etc/vconsole.conf
+//entrer KEYMAP=fr-latin9
+
+#nom de la machine
+
+vim /etc/hostname
+//entrer le nom de l'ordi
+
+#config reseau
+
+systemctl enable dhcpcd@nom de l'interface reseau -> voir ip a
+pacman -S openssh
+
+#initramfs
+
+vim /etc/mkinitcpio.conf
+//modifier comme suit :
+//HOOKS=(base udev autodetect keyboard modconf block encrypt lvm2 filesystems fsck)
+mkinitcpio -p linux
+
+#le bootloader
+
+pacman -S grub
+vim /etc/default/grub
+//dé-commenter GRUB_ENABLE_CRYPTODISK=y
+blkid
+vim /etc/default/grub
+//ajouter dans les gillemet de GRUB_CMDLINE_LINUX=
+//cryptdevice=UUID='UUID de /dev/sda2':cryptlvm root=/dev/vg/root
+pacman -S efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot
+
+#maj du microcode automatique
+
+pacman -S intel-ucode
+//amd-ucode pour AMD
+
+#génération de la config GRUB
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+#installer le zsh
+
+pacman -S zsh
+
+#ajouter un utilisateurs
+
+useradd -m -G wheel -s /bin/zsh *nom*
+
+#config zsh
+
+pacman -S wget
+su *nom du crée*
+//suivre les idications (1 -> 4 -> 0 -> 0)
+
+#mot de passe
+
+exit
+passwd *nom du compte*
+passwd root
+
+#installer sudo
+
+pacman -S sudo
+chmod 700 /etc/sudoers
+vim /etc/sudoers
+//de-commenter la ligne 85 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
+
+#interface graphique et apps
+
+sudo pacman -S --needed base-devel
+//tous prendre
+
+reboot
+
+####Installation du rice et des utilitaires
+
+!!tout installer en utilisateur
+
+a faire:
+//app windows
+//neovim avec gruvbox et tree
+//revoir nvim plugins : telekasten + nvim-autopairs + zen-mode + lualine + nvim-treesitter + telescope + gitsigns + nvim-web-devicons + nvim-tree + luasnip
+
+ce qui marche:
+//waybar
+//ranger (nnn = chiant) => image viewer kitty + pillow (pip). fait aussi preview pdf en image et ouvre zathura
+//wofi en app launcher
+//sway juste un probleme avec le clavier et kitty
+//mako -> apparement fonctionnel mais aucun popup
+//neofetch
+//zathura avec transparence
+//mpv
+//lock screen -> swaylock-effect
+//jonglage entre bureau, envoie de conaineur aux autres bureau. redimensionnement
+
+pb:
+//on a eu un latin9 fonctionnelle pendant un temps => quand on démarre sway manuellement (regénérer la config ne marche pas)
+//waybar crash avec le module temperature. Hyper-v?
+//imv traite mal les images. ranger est OK -> kitty-ice (pb de résolution?)
+//wpaperd plante au changement d'image (pb de résolution?)
+//theme gtk non appliqué
+
+info:
+//zathura prendre tous les plugins
+//ranger utilise ici kitty pour les preview? (kitty-conf)
+//decommenter temperature dans waybar
+
+pacman -S sway waybar mako kitty git xorg-xwayland wofi
+
+//depuis le utilisateur
+git clone https://aur.archlinux.org/swaylock-effects-git.git
+cd swaylock-effects-git
+makepkg -si
+
+//copier /etc/profile vers ~/.profile
+//ajouter
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
+fi
+//cela fait démarrer sway sur le tty1 au démarrage
+
+#zsh, prezto, spaceship et fonts
+//FiraCode Nerd Font
+git clone  https://aur.archlinux.org/nerd-fonts-fira-code.git
+cd nerd-fonts-fira-code
+makepkg -si
+//prezto
+git
+//starship
+pacman -S starship
+
+#utilitaires
+pacman -S ripgrep neovim imv zathura fzf less ranger mpv htop
+git clone https://github.com/dylanaraps/pfetch
+cd pfetch
+make install
+//en utilisateur
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone https://aur.archlinux.org/bartib.git
+cd bartib
+makepkg -si
+cd ..
+git clone https://aur.archlinux.org/buku.git
+cd buku
+makepkg -si
+
+#autres
+pacman -S neomutt todoman khal
+
+//installer les fichier dans le dossier utilisateurs
+
+#networkmanager
+pacman -S networkmanager
+enable
+
+#fond d'ecran -> wpaperd
+git
+modifier les variables d'env ou chemin complet swayconf
+=> bug au changement
+
+#son et autres
+pacman -S pipewire helvum pipewire-pulseaudio
+->choisir plumber
+
+#steam, wine, lutris, heroic, legendary
+-> activer le support proton

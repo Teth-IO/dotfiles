@@ -1,0 +1,92 @@
+@define-color bg1   #282828;
+@define-color ws_foc #e5e9f0;
+@define-color ws-clr #2e3440;
+@define-color font #ffc94a;
+@define-color mpd #fbf1c7;
+@define-color pipe #7d818a;
+
+window#waybar {
+  /* background-color: rgba(0x11,0x11, 0x12, 0.6); */
+  /* background-color: #4c566a; */
+  background-color: #0b0c0d;
+}
+* {
+	font-family: FiraCode Nerd Font;
+	font-size: 12px;
+	min-height: 0;
+	font-weight: 600;
+  	padding-bottom: 1px;
+  	padding-top: 1px;
+}
+/* center module */
+#clock {
+  margin: 2px 0px 2px 0px;
+  color: #66D9E2;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: @bg1;
+}
+
+/* right module */
+#pulseaudio,
+#custom-bluetooth,
+#network,
+#disk,
+#memory,
+#cpu,
+#backlight,
+#battery {
+  color: @font;
+  margin: 2px 0px 2px 0px;
+  padding: 0px 8px 0px 8px;
+  background-color: @bg1;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#workspaces {
+  margin: 2px 2px 2px 2px;
+  padding: 0px 2px 0px 6px;
+  background-color: @bg1;
+}
+
+#workspaces button {
+  background: @bg1;
+  color: @font;
+  margin: 2px 3px 2px 3px;
+  padding: 0px;
+}
+
+#workspaces button.focused {
+  /* color: @ws-clr; */
+  /* background: @ws_foc; */
+  border-width: 2px;
+  border-color: #cc241d;
+  color: #DAA530;
+  background-color: #504945;
+  border-style: none none outset none;
+}
+
+#workspaces button.urgent {
+}
+#pulseaudio {
+  color: #F92672;
+}
+#network {
+  color: #DAA530;
+}
+#memory {
+  color: #AE76C6;
+}
+#cpu {
+  color: #A6D727;
+}
+#battery {
+  color: #d3869b;
+}
+#window {
+  color: #FFFFFF;
+}
+#mode {
+  color: #C0C1B5;
+}
