@@ -214,7 +214,6 @@ makepkg -si
 pacman -S helvum pipewire-pulse
 
 //copier coller le dépot vers ~
-//a tester: decommenter temperature dans waybar
 
 reboot
 après l'identification entré sway pour charger l'interface graphique
