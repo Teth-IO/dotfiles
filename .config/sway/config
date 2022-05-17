@@ -56,7 +56,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 #output * bg /home/a/Images/a.jpg fill
 
-exec ~/.cargo/bin/wpaperd
+exec wpaperd
 
 #
 # Example configuration:
