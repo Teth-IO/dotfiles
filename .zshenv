@@ -44,15 +44,3 @@ export BUKU_COLORS='hEhhf'
 
 # define configuration file location for ripgrep
 export RIPGREP_CONFIG_PATH='/home/loki/.config/ripgrep/ripgreprc'
-
-# NNN settings
-#export NNN_FIFO='/tmp/nnn.fifo'
-#export NNN_TRASH='1' # use trash-cli
-#export NNN_COLORS='4652' # colors for contexts
-#export NNN_FCOLORS='0203040a000d0608090b0501' # file specific colors
-#export NNN_BMS='w:/home/loki/pictures/wallpapers;p:/home/loki/projects;s:/home/loki/pictures/screenshots;m:/run/media/loki/'
-#export NNN_PLUG='p:preview-tui;o:launch;v:imgview;c:preview-tabbed'
-#export NNN_OPTS='deEPrUx'
-
-# bartib settings
-# BARTIB_FILE="/home/loki/sync/activities.bartib"
