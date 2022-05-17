@@ -3,9 +3,10 @@
 Mon envionnement de travail Arch.
 Minimaliste, simple et efficace. 
 
-Wayland:
+###Wayland:
 
-  Eléments principaux:
+####Eléments principaux:
+  
 - Gestionnaire de fenêtre: sway
 - Bar de status: waybar
 - lanceur d'application: wofi
@@ -13,7 +14,8 @@ Wayland:
 - Ecran de verouillage: swaylock-effect
 - Police de caractère: FiraCode Nerd Font
   
-  Utilitaires:
+####Utilitaires:
+  
 - Terminal: kitty
 - shell: zsh avec prezto et spaceship
 - Gestionnaire de fichier: ranger
