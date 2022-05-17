@@ -4,6 +4,9 @@
 		"modules-left": ["sway/workspaces", "sway/mode"],
 		"modules-center": ["sway/window"],
 		"modules-right": ["network", "pulseaudio", "memory", "cpu", "temperature", "battery", "clock"],
+		"sway/window": {
+            "max-length": 45
+        },
 		"clock": {
 			"format": "{:%H:%M}",
 			"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -44,7 +47,6 @@
             "format": "{capacity} {icon}",
             "format-icons": ["", "", "", "", ""],
             "format-charging": "{capacity} {icon}ﮣ",
-            "max-length": 25
         },
 		"sway/workspaces": {
             "format": "{name}",

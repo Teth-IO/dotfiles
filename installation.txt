@@ -189,8 +189,9 @@ git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$H
 sudo pacman -S starship
 
 #utilitaires
-sudo pacman -S ripgrep neovim imv zathura fzf less ranger mpv htop neofetch
+sudo pacman -S ripgrep neovim imv zathura fzf less ranger mpv htop neofetch python-pip
 -> pipewire-jack, wireplumber
+pip install pillow
 git clone https://aur.archlinux.org/buku.git
 cd buku
 makepkg -si
@@ -200,7 +201,8 @@ sudo pacman -S neomutt todoman khal
 
 #networkmanager
 pacman -S networkmanager
-enable
+sudo systemctl enable NetworkManager
+//wifi avec nmcli et nmtui
 
 #daemon de fond d'ecran: wpaperd
 git clone https://aur.archlinux.org/wpaperd.git
@@ -208,8 +210,8 @@ cd wpaperd
 makepkg -si
 //modifier le fichier output.conf avec les bons paramètres
 
-#gestionnaire de son
-pacman -S helvum
+#son
+pacman -S helvum pipewire-pulse
 
 //copier coller le dépot vers ~
 //a tester: decommenter temperature dans waybar
