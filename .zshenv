@@ -41,6 +41,3 @@ export FZF_DEFAULT_OPTS='
 
 # buku colors
 export BUKU_COLORS='hEhhf'
-
-# define configuration file location for ripgrep
-export RIPGREP_CONFIG_PATH='/home/loki/.config/ripgrep/ripgreprc'
