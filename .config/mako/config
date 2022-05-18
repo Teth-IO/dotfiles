@@ -1,14 +1,16 @@
-layer=top
+layer=overlay
 anchor=top-right
-font=mononoki Nerd Font 10
-background-color=#ffffff
-text-color=#000000
-width=350
-margin=0,30,30
+
+font=FiraCode Nerd Font 10
+
+background-color=#282828
+text-color=#FBF1C7
+
+margin=5
 padding=10
+
 border-size=2
-border-color=#262626
-progress-color=over #262626ff
+border-color=#A89984
 border-radius=5
-default-timeout=10000
+
 group-by=summary
