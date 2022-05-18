@@ -37,7 +37,6 @@
 				"headset": "",
 				"default": ["", ""],
             },
-            "on-click-right": "helvum",
         },
 		"battery": {
             "states": {
