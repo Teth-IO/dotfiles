@@ -32,7 +32,6 @@ Utilitaires:
 Todo: 
     configurer neovim, neomutt, todoman et khal.  
     corriger les erreurs zshenv et zshrc  
-    debuger le screenchot
 
 [installation de a à z](installation.txt)
 
