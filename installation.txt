@@ -211,7 +211,7 @@ makepkg -si
 //modifier le fichier output.conf avec les bons paramètres
 
 #son
-pacman -S helvum pipewire-pulse
+pacman -S pipewire-pulse
 
 //copier coller le dépot vers ~
 
