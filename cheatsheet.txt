@@ -8,8 +8,8 @@ mod+o = verouille l'écran (swaylock-effect)
 mod+q = ferme le conteneur actuel
 mod+r = recharge sway
 mod+shift+e = ferme sway
-touche impression d'écran = screenshot (le png est de le dossier ~)
-mod+shift+1 = firefox
+touche impression d'écran = screenshot (grim - le png est de le dossier ~)
+mod+shift+1 = navigateur internet (firefox)
 mod+shift+2 = gestionnaire de fichier (ranger)
 
 navigation (marche de F1 a F10):
