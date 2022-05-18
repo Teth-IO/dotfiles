@@ -32,7 +32,7 @@ Utilitaires:
 Todo: 
     configurer neovim, neomutt, todoman et khal.  
     corriger les erreurs zshenv et zshrc  
-    trouver un gestionnaire audio pour waybar
+    trouver un gestionnaire audio pour waybar  
     debuger le screenchot
 
 [installation de a à z](installation.txt)
