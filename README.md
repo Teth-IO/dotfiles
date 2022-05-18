@@ -33,6 +33,8 @@ Todo:
     configurer neovim, neomutt, todoman et khal.  
     corriger les erreurs zshenv et zshrc  
 
-[installation de a à z](installation.txt)
+=> [installation de a à z](installation.txt)
+
+=> [liste des commandes](cheatsheet.txt)
 
 ![Screenshot 1](./Images/1.png)
