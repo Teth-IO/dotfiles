@@ -13,11 +13,13 @@
 		},
 		"cpu": {
 			"format": "{usage}% ",
-			"tooltip": true
+			"tooltip": true,
+			"on-click": "kitty htop"
 		},
 		"memory": {
 			"format": "{}% ",
-            "tooltip": true
+            "tooltip": true,
+            "on-click": "kitty htop"
 		},
 		"network": {
 			"format-wifi": "{essid} {ipaddr}",
