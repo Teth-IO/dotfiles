@@ -21,6 +21,8 @@ mod+UpArrow = passe au conteneur du dessus
 mod+DownArrow = passe au conteneur du dessous
 mod+RightArrow = pass au conteneur de droite
 mod+LeftArrow = passe au conteneur de gauche
+crtl+shift+up = monter dans le terminal
+ctrl+shift+down = descendre dans le terminal
 
 redimensionnement:
 
