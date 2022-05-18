@@ -27,11 +27,9 @@ set $menu wofi --show run
 
 #custom apps
 set $web firefox
-set $file nautilus
 
 #custom keybinding
     bindsym $mod+1 exec $web
-    bindsym $mod+2 exec $file
     bindsym $mod+3 exec steam
     bindsym $mod+o exec swaylock --clock --indicator --screenshots --effect-scale 0.4 --effect-vignette 0.2:0.5 --effect-blur 4x2 --datestr "%a %e.%m.%Y" --timestr "%k:%M"
 
@@ -104,6 +102,9 @@ exec wpaperd
 
     # Start your launcher
     bindsym $mod+space exec $menu
+
+    #screenchot
+    bindsym Print exec grim screenshot.png
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
