@@ -98,7 +98,7 @@ vim /etc/hostname
 #config reseau
 
 systemctl enable dhcpcd@nom de l'interface reseau -> voir ip a
-pacman -S openssh
+pacman -S openssh man
 
 #initramfs
 
