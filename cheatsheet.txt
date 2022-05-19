@@ -7,6 +7,7 @@ mod+espace = lanceur d'application (wofi)
 mod+o = verouille l'écran (swaylock-effect)
 mod+q = ferme le conteneur actuel
 mod+r = recharge sway
+mod+f = passe le conteneur en pleine écran
 mod+shift+e = ferme sway
 touche impression d'écran = screenshot (grim - le png est de le dossier ~)
 mod+shift+1 = navigateur internet (firefox)
