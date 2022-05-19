@@ -29,6 +29,11 @@ Utilitaires:
 - Clendrier: Khal
 - To-dos: todoman
 
+todo:
+	neomutt -> lire le contenu html
+	todoman -> fichier de configuration
+	mako -> aucune notif pour les mail?
+
 => [installation de a à z](installation.txt)
 
 => [liste des commandes](cheatsheet.txt)
