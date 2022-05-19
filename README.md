@@ -29,9 +29,6 @@ Utilitaires:
 - Clendrier: Khal
 - To-dos: todoman
 
-Todo: 
-    configurer neovim, neomutt, todoman et khal.  
-
 => [installation de a à z](installation.txt)
 
 => [liste des commandes](cheatsheet.txt)
