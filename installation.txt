@@ -197,7 +197,7 @@ cd buku
 makepkg -si
 
 #autres
-sudo pacman -S neomutt todoman khal
+sudo pacman -S neomutt todoman khal libnotify
 
 #networkmanager
 pacman -S networkmanager
