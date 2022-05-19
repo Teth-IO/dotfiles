@@ -170,7 +170,7 @@ sudo systemctl start sshd
 
 !!tout installer en utilisateur
 
-sudo pacman -S sway waybar mako kitty git xorg-xwayland wofi
+sudo pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland
 
 //installation du lock screen 
 git clone https://aur.archlinux.org/swaylock-effects-git.git
