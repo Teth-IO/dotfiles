@@ -211,7 +211,21 @@ makepkg -si
 //modifier le fichier output.conf avec les bons paramètres
 
 #son
-pacman -S pipewire-pulse
+sudo pacman -S pipewire-pulse
+
+#chiffrement des requêtes DNS
+sudo pacman -S dnscrypt-proxy bind
+=> modifier /dnscrypt-proxy/dnscrypt-proxy.toml en fonction de ses besoins
+=> ajouter un fichier /etc/NetworkManager/conf.d/dns.conf qui contient:
+[main]
+dns=none
+=> modifer /etc/resolv.conf comme suit:
+nameserver ::1
+nameserver 127.0.0.1
+
+#vérifier la santé du disque dur
+sudo pacman -S smartmontools
+=> voir https://wiki.archlinux.org/title/S.M.A.R.T._(Fran%C3%A7ais) pour les test
 
 //copier coller le dépot vers ~
 
