@@ -36,8 +36,7 @@ Internet:
 - Chiffrement DNS: dnscrypt-proxy
 
 todo:  
-	neomutt -> lire le contenu html  
-	todoman -> fichier de configuration   
+	neomutt -> lire le contenu html     
 	configuration de nvim
 
 => [installation de a à z](installation.txt)
