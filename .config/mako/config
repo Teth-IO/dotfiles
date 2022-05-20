@@ -13,6 +13,4 @@ border-size=2
 border-color=#A89984
 border-radius=5
 
-default-timeout=5000
-
 group-by=summary
