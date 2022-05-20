@@ -17,6 +17,9 @@ export PAGER='less'
 # mozilla firefox sous wayland
 export MOZ_ENABLE_WAYLAND=1
 
+# libreoffice gui fix wayland
+export SAL_USE_VCLPLUGIN=gtk3
+
 # make QT use Wayland
 export QT_QPA_PLATFORM=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
