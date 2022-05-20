@@ -200,9 +200,12 @@ makepkg -si
 sudo pacman -S neomutt todoman khal libnotify
 
 #networkmanager
-pacman -S networkmanager
+sudo pacman -S networkmanager
 sudo systemctl enable NetworkManager
 //wifi avec nmcli et nmtui
+
+#Navigateurs
+sudo pacman -S amfora firefox elinks
 
 #daemon de fond d'ecran: wpaperd
 git clone https://aur.archlinux.org/wpaperd.git
