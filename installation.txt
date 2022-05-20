@@ -172,17 +172,17 @@ sudo systemctl start sshd
 
 sudo pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland
 
-//installation du lock screen 
+#installation du lock screen 
 git clone https://aur.archlinux.org/swaylock-effects-git.git
 cd swaylock-effects-git
 makepkg -si
 
-//FiraCode Nerd Font
+#FiraCode Nerd Font
 git clone  https://aur.archlinux.org/nerd-fonts-fira-code.git
 cd nerd-fonts-fira-code
 makepkg -si
 
-//prezto
+#prezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 /en une commande
 setopt EXTENDED_GLOB
@@ -191,11 +191,16 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
 done
 /remplacer les lein symbolique dans ~ par les deux .zsh du dépôt
 
-//starship
+#starship
 sudo pacman -S starship
 
+#nvim
+sudo pacman -S neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 #utilitaires
-sudo pacman -S ripgrep neovim imv fzf less ranger mpv htop neofetch python-pip
+sudo pacman -S ripgrep imv fzf less ranger mpv htop neofetch python-pip
 -> pipewire-jack, wireplumber
 pip install pillow
 git clone https://aur.archlinux.org/buku.git
