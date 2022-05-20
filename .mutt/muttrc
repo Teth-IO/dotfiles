@@ -31,3 +31,9 @@ set sidebar_short_path=yes
 
 # notification de nouveaux emails
 set new_mail_command="notify-send 'Neomutt' 'Nouveau Mail!' --icon=dialog-information"
+
+
+## Abook
+set query_command= "abook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor        <Tab> complete-query

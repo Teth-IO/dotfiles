@@ -233,6 +233,11 @@ dns=none
 nameserver ::1
 nameserver 127.0.0.1
 
+#carnet d'adresse neomutt
+git clone https://aur.archlinux.org/abook.git
+cd abook
+makepkg -si
+
 #vérifier la santé du disque dur
 sudo pacman -S smartmontools
 => voir https://wiki.archlinux.org/title/S.M.A.R.T._(Fran%C3%A7ais) pour les test
@@ -240,7 +245,7 @@ sudo pacman -S smartmontools
 //copier coller le dépot vers ~
 
 reboot
-après l'identification entré sway pour charger l'interface graphique
+après l'identification entrer sway pour charger l'interface graphique
 
 #pour les jeux voir steam, wine, lutris, heroic, legendary...
 -> indice: activer le support proton dans steam
