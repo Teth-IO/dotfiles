@@ -18,7 +18,6 @@ Utilitaires:
 - Terminal: kitty
 - Shell: zsh avec prezto et spaceship
 - Gestionnaire de fichier: ranger
-- Navigateur: firefox
 - Editeur de texte: neovim
 - Traitement de texte: libreoffice
 - Moniteur système: htop
@@ -26,9 +25,15 @@ Utilitaires:
 - Visionneuse d'image: imv
 - Lecteur multimédia: mpv
 - Client mail: neomutt
-- Calendrier: Khal
+- Calendrier: khal
 - Gestionnaire de mot de passe: KeePassXC
 - To-dos: todoman
+
+Internet:
+- Gemini: amfora
+- Graphique: firefox
+- Console: elinks
++ dnscrypt-proxy
 
 todo:  
 	neomutt -> lire le contenu html  
