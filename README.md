@@ -26,12 +26,14 @@ Utilitaires:
 - Visionneuse d'image: imv
 - Lecteur multimédia: mpv
 - Client mail: neomutt
-- Clendrier: Khal
+- Calendrier: Khal
+- Gestionnaire de mot de passe: KeePassXC
 - To-dos: todoman
 
 todo:  
 	neomutt -> lire le contenu html  
-	todoman -> fichier de configuration  
+	todoman -> fichier de configuration   
+	configuration de nvim
 
 => [installation de a à z](installation.txt)
 
