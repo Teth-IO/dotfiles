@@ -184,17 +184,24 @@ makepkg -si
 
 //prezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+/en une commande
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+/remplacer les lein symbolique dans ~ par les deux .zsh du dépôt
 
 //starship
 sudo pacman -S starship
 
 #utilitaires
-sudo pacman -S ripgrep neovim imv zathura fzf less ranger mpv htop neofetch python-pip
+sudo pacman -S ripgrep neovim imv fzf less ranger mpv htop neofetch python-pip
 -> pipewire-jack, wireplumber
 pip install pillow
 git clone https://aur.archlinux.org/buku.git
 cd buku
 makepkg -si
+sudo pacman -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps 
 
 #autres
 sudo pacman -S neomutt todoman khal libnotify
