@@ -33,7 +33,7 @@ Internet:
 - Gemini: amfora
 - Graphique: firefox
 - Console: elinks
-+ dnscrypt-proxy
+- Chiffrement DNS: dnscrypt-proxy
 
 todo:  
 	neomutt -> lire le contenu html  
