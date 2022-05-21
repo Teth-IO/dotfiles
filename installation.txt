@@ -267,7 +267,6 @@ après l'identification entrer sway pour charger l'interface graphique
 
 !!!en cas d'erreur dans les fichier .zshenv et/ou .zshrc au démarrage les supprimer et les recréer en copiant le contenu avec éditeur de texte
 !!!en cas d'erreur de sway au démarrage (permsision denied) installer polkit -> sudo pacman -S polkit
-!sur certaines installation les commandes reboot ou poweroff on besoin d'être executer avec sudo.
 
 #pour les jeux voir steam, wine, lutris, heroic, legendary...
 -> indice: activer le support proton dans steam
