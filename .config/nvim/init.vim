@@ -29,4 +29,4 @@ Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 call plug#end()
 
 nnoremap <leader>q <cmd>CHADopen<cr>
-autocmd VimEnter * COQnow
+autocmd VimEnter * COQnow -s
