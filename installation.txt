@@ -1,11 +1,13 @@
 ####Installation du système de base
 
 #setup d'installation :
+Si l'on dispose d'un second pc sous la main faire les manip suivante depuis un ssh permet de bénéficier du copier/coller
+Sinon tout faire à la main
 
-ip a -> trouver l'ip
+ssh:
+ip a -> trouver l'ip (dhcp par défaut si connecté en ethernet sinon voir le wiki pour setup une connection wifi)
 passwd -> changer le mdp root
-
-se ssh
+se ssh en root
 
 #partitionnement des disques :
 
@@ -19,8 +21,13 @@ se ssh
            |--> /                        root 25%    ext4      Tous les fichiers systèmes
            |--> /home                    home 75%    ext4      fichiers utilisateurs
 
+fdisk /dev/sda
+g
+w
 cfdisk
-//choisir gpt et entrer les partition sda1 et 2
+//entrer les nouvelles partitions
+//sda1 512MB de type EFI
+//sda2 le reste en gardant le type par defaut (linux filesystems)
 write
 
 #formatage, chiffrement création du LVM:
@@ -71,7 +78,7 @@ dd if=/dev/zero of=/swapfile bs=1M count=(valeur en MiB e.g. 4096 pour 4G) statu
 chmod 0600 /swapfile
 mkswap -U clear /swapfile
 swapon /swapfile
-vim fstab
+vim /etc/fstab
 //le swapfile doit être comme suit
 /swapfile none swap sw 0 0
 
@@ -94,11 +101,6 @@ vim /etc/vconsole.conf
 
 vim /etc/hostname
 //entrer le nom de l'ordi
-
-#config reseau
-
-systemctl enable dhcpcd@nom de l'interface reseau -> voir ip a
-pacman -S openssh man
 
 #initramfs
 
@@ -133,7 +135,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S zsh
 
 #ajouter un utilisateurs
-
+!!!On crée ici un compte administrateur. Voir le wiki pour les différents groupes d'utilisateurs
 useradd -m -G wheel -s /bin/zsh *nom*
 
 #config zsh
@@ -148,34 +150,37 @@ passwd *nom du compte*
 passwd root
 
 #installer sudo
+!!!Dans la continuité de notre compte administrateur on lui donne ici accès aux commandes root sans mdp 
 
 pacman -S sudo
 chmod 700 /etc/sudoers
 vim /etc/sudoers
 //de-commenter la ligne 85 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
 
-#outils de base nécessaire aux installations
+#outils de base nécessaire à diverses installations
 
 sudo pacman -S --needed base-devel
 //tous prendre
+
+#networkmanager
+
+pacman -S networkmanager openssh man
+systemctl enable NetworkManager
+//wifi avec nmcli et nmtui
 
 reboot
 
 #démarrer sur l'os nouvellement installé
 
-sudo systemctl start sshd 
-
 ####Installation du rice et des utilitaires
 !!!!je n'installe pas de display manager
-
 !!tout installer en utilisateur
+donc se ssh en utilisateur ou se connecter sur le compte utilisateur
 
-sudo pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland
+#activer le ssh
+sudo systemctl start sshd
 
-#installation du lock screen 
-git clone https://aur.archlinux.org/swaylock-effects-git.git
-cd swaylock-effects-git
-makepkg -si
+sudo pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland light
 
 #FiraCode Nerd Font
 git clone  https://aur.archlinux.org/nerd-fonts-fira-code.git
@@ -189,10 +194,12 @@ setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
-/remplacer les lein symbolique dans ~ par les deux .zsh du dépôt
+/ignorer les erreurs de fichier existant, on remplace a la fin les liens symbolique dans ~ par les deux .zsh du dépôt
 
 #starship
 sudo pacman -S starship
+zsh
+//et profiter de la beauté du nouveau shell
 
 #nvim
 sudo pacman -S neovim wl-clipboard
@@ -211,11 +218,6 @@ sudo pacman -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps
 #autres
 sudo pacman -S neomutt todoman khal libnotify
 
-#networkmanager
-sudo pacman -S networkmanager
-sudo systemctl enable NetworkManager
-//wifi avec nmcli et nmtui
-
 #Navigateurs
 sudo pacman -S amfora firefox elinks
 
@@ -230,27 +232,42 @@ sudo pacman -S pipewire-pulse
 
 #chiffrement des requêtes DNS
 sudo pacman -S dnscrypt-proxy bind
-=> modifier /dnscrypt-proxy/dnscrypt-proxy.toml en fonction de ses besoins
+=> modifier /etc/dnscrypt-proxy/dnscrypt-proxy.toml en fonction de ses besoins
+(pour moi juste autoriser les serveurs sous ipv6 en imposer le DNSSEC)
 => ajouter un fichier /etc/NetworkManager/conf.d/dns.conf qui contient:
 [main]
 dns=none
 => modifer /etc/resolv.conf comme suit:
 nameserver ::1
 nameserver 127.0.0.1
+//l'activer au démarrage
+sudo systemctl enable dnscrypt-proxy
+//et l'activer maintenant sinon plus de dns
+sudo systemctl start dnscrypt-proxy
 
 #carnet d'adresse neomutt
 git clone https://aur.archlinux.org/abook.git
 cd abook
 makepkg -si
 
-#vérifier la santé du disque dur
+#outils pour vérifier la santé du disque dur
 sudo pacman -S smartmontools
 => voir https://wiki.archlinux.org/title/S.M.A.R.T._(Fran%C3%A7ais) pour les test
 
-//copier coller le dépot vers ~
+#installation du lock screen
+git clone https://aur.archlinux.org/swaylock-effects-git.git
+cd swaylock-effects
+makepkg -si
+
+//copier coller les dots du dépot vers ~
+//virer les dossier d'installation git
 
 reboot
 après l'identification entrer sway pour charger l'interface graphique
+
+!!!en cas d'erreur dans les fichier .zshenv et/ou .zshrc au démarrage les supprimer et les recréer en copiant le contenu avec éditeur de texte
+!!!en cas d'erreur de sway au démarrage (permsision denied) installer polkit -> sudo pacman -S polkit
+!sur certaines installation les commandes reboot ou poweroff on besoin d'être executer avec sudo.
 
 #pour les jeux voir steam, wine, lutris, heroic, legendary...
 -> indice: activer le support proton dans steam
