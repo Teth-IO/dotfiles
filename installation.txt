@@ -166,7 +166,7 @@ sudo pacman -S --needed base-devel
 
 pacman -S networkmanager openssh man
 systemctl enable NetworkManager
-//wifi avec nmcli et nmtui
+//utiliser nmtui
 
 reboot
 
