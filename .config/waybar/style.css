@@ -74,6 +74,9 @@ window#waybar {
 #memory {
   color: #AE76C6;
 }
+#temperature {
+  color: #C0C1B5;
+}
 #cpu {
   color: #A6D727;
 }
