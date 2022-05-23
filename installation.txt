@@ -268,5 +268,17 @@ après l'identification entrer sway pour charger l'interface graphique
 !!!en cas d'erreur dans les fichier .zshenv et/ou .zshrc au démarrage les supprimer et les recréer en copiant le contenu avec éditeur de texte
 !!!en cas d'erreur de sway au démarrage (permsision denied) installer polkit -> sudo pacman -S polkit
 
+#pour ne pas dépendre de l'horloge du BIOS
+sudo pacman -Syu ntp
+// modifier les serveur dans /etc/ntp.conf comme suit
+server 0.fr.pool.ntp.org iburst
+server 1.fr.pool.ntp.org iburst
+server 2.fr.pool.ntp.org iburst
+server 3.fr.pool.ntp.org iburst
+//automatiser le démarrage du daemon
+sudo systemctl enable ntpd
+//le démarrer maintenant
+sudo systemctl start ntpd
+
 #pour les jeux voir steam, wine, lutris, heroic, legendary...
 -> indice: activer le support proton dans steam
