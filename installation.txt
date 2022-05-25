@@ -67,6 +67,9 @@ pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 vim dhcpcd
 genfstab -U /mnt >> /mnt/etc/fstab
 vim /mnt/etc/fstab
 //remplacer les "rw, relatime" par "noatime"
+//remplacer le dernier 0 de / par 1 et celui des autres par 2
+//ajouter une entré dans la RAM pour /tmp comme suit
+tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 
 #entrer dans le nouveau système
 
@@ -80,7 +83,7 @@ chmod 0600 /swapfile
 mkswap -U clear /swapfile
 swapon /swapfile
 vim /etc/fstab
-//le swapfile doit être comme suit
+//ajouter le swapfile comme suit
 /swapfile none swap sw 0 0
 
 #fuseau horaire
