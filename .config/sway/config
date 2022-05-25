@@ -262,7 +262,7 @@ client.focused          #000000     #000000     #000000     #000000	#000000
 
 default_border pixel 1
 
-gaps inner 1
+gaps inner 2
 
 gaps outer 0
 
