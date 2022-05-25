@@ -14,7 +14,6 @@ se ssh en root
 #partitionnement des disques :
 
 //On part sur un UEFI/GPT avec chiffrement de la parition principal et LVM
-//le swap sera ici une partition du double du nombre de Gb de RAM
 //shema du partitionnement :
 /dev/sda
 |--> /boot          /dev/sda1 EFI        boot 512 MB fat32     GRUB, kernel et EFI
