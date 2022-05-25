@@ -4,6 +4,8 @@
 Si l'on dispose d'un second pc sous la main faire les manip suivante depuis un ssh permet de bénéficier du copier/coller
 Sinon tout faire à la main
 
+une fois que l'on a booté sur la clef d'installation:
+
 ssh:
 ip a -> trouver l'ip (dhcp par défaut si connecté en ethernet sinon voir le wiki pour setup une connection wifi)
 passwd -> changer le mdp root
