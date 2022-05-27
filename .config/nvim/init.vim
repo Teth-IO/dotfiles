@@ -6,7 +6,7 @@ set hlsearch                " highlight search
 set incsearch               " incremental search
 set tabstop=8               " number of columns occupied by a tab 
 set softtabstop=8           " see multiple spaces as tabstops so <BS> does the right thing
-set noexpandtab
+set noexpandtab               " converts tabs to white space
 set shiftwidth=8            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set wildmode=longest,list   " get bash-like tab completions
@@ -16,6 +16,8 @@ set mouse=a                 " enable mouse click
 set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set ttyfast                 " Speed up scrolling in Vim
+set number
+set numberwidth=1
 " setlocal spell spelllang=fr "correcteur orthographique pour le français (pour mémoire)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
@@ -24,7 +26,11 @@ call plug#begin()
 
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'neovim/nvim-lspconfig',
+Plug 'simrat39/rust-tools.nvim'
+Plug 'williamboman/nvim-lsp-installer'
 
 call plug#end()
 
