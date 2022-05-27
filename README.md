@@ -1,6 +1,6 @@
 # dotfiles
 
-Mon envionnement de travail ArchLinux sous Wayland.  
+Mon envionnement de travail pour laptop sous ArchLinux.  
 Minimaliste, simple et efficace. 
 
 
