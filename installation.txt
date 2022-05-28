@@ -60,7 +60,7 @@ reflector --country France --age 12 --sort rate --save /etc/pacman.d/mirrorlist
 !!!utile pour installer les bons driver de gpu 
 !!!sway ne fonctionne sous NVIDIA qu'avec nouveau, le driver open source. (pas conseiller pour le gaming)
 
-pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 vim dhcpcd
+pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 vim dhcpcd reflector rsync
 
 #montage automatique des partitions
 
