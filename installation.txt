@@ -142,15 +142,8 @@ pacman -S zsh
 !!!On crée ici un compte administrateur. Voir le wiki pour les différents groupes d'utilisateurs
 useradd -m -G wheel -s /bin/zsh *nom*
 
-#config zsh
-
-su *nom du crée*
-//suivre les idications (1 -> 4 ... -> 0 -> 0)
-
 #mot de passe
-
-exit
-passwd *nom du compte*
+passwd *nom du compte créer*
 passwd root
 
 #installer sudo
