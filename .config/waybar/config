@@ -31,6 +31,7 @@
 		},
 		"pulseaudio": {
 			"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+			"on-click-right": "kitty alsamixer",
             "format": "{volume}% {icon}",
 			"format-muted": "婢",
 			"format-icons": {
