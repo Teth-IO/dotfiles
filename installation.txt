@@ -225,7 +225,7 @@ makepkg -si
 //modifier le fichier output.conf avec les bons paramètres
 
 #son
-sudo pacman -S pipewire-pulse
+sudo pacman -S pipewire-pulse alsa-utils
 
 #chiffrement des requêtes DNS
 sudo pacman -S dnscrypt-proxy bind
