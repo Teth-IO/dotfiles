@@ -198,10 +198,8 @@ sudo pacman -S starship
 zsh
 //et profiter de la beauté du nouveau shell
 
-#nvim
-sudo pacman -S neovim wl-clipboard
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+#AstroNvim
+-> a voir
 
 #utilitaires
 sudo pacman -S ripgrep imv fzf less ranger mpv htop neofetch python-pip grim
