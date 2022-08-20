@@ -18,7 +18,7 @@ Utilitaires:
 - Terminal: kitty
 - Shell: zsh avec prezto et spaceship
 - Gestionnaire de fichier: ranger
-- Editeur de texte: neovim
+- Editeur de texte: AstroNvim
 - Traitement de texte: libreoffice
 - Moniteur système: htop
 - Visionneuse de documents: zathura  
