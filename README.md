@@ -41,8 +41,8 @@ Internet:
 => [liste des commandes](cheatsheet.txt)
 
 A faire :
-  - couleur de mako
-  - design de polybar
+  - couleur de mako et wofi
+  - design de waybar
   - configurer AstroNvim
 
 ![Screenshot 1](./Images/1.png)
