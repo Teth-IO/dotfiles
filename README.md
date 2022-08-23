@@ -40,4 +40,9 @@ Internet:
 
 => [liste des commandes](cheatsheet.txt)
 
+A faire :
+  - couleur de mako
+  - design de polybar
+  - configurer AstroNvim
+
 ![Screenshot 1](./Images/1.png)
