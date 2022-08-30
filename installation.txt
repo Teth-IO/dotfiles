@@ -52,7 +52,7 @@ mount --mkdir /dev/sda1 /mnt/boot
 
 #selection des mirroirs du gestionnaire de paquets
 
-reflector --country France --age 12 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country France --age 12 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
 //ignorer les erreurs 403
 
 #installation du système de base
