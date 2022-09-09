@@ -19,7 +19,7 @@ Utilitaires:
 - Shell: zsh avec prezto et spaceship
 - Gestionnaire de fichier: ranger
 - Editeur de texte: AstroNvim
-- Traitement de texte: libreoffice
+- Traitement de texte: onlyoffice & TeX
 - Moniteur système: htop
 - Visionneuse de documents: zathura  
 - Visionneuse d'image: imv
