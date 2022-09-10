@@ -56,8 +56,6 @@ reflector --country France --age 12 --sort rate --protocol https --save /etc/pac
 //ignorer les erreurs 403
 
 #installation du système de base
-!!!on peut git clone le repository  et modifier le script pacstrap
-!!!utile pour installer les bons driver de gpu 
 !!!sway ne fonctionne sous NVIDIA qu'avec nouveau, le driver open source. (pas conseiller pour le gaming)
 
 pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 vim dhcpcd reflector rsync
