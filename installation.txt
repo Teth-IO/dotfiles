@@ -75,7 +75,7 @@ tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 
 arch-chroot /mnt
 
-#swapfile
+#swapfile (le zswap est configurer par défaut sous arch linux, créer un swapfile ici permettra d'obtenir un résultat similaire a du zram)
 
 //taille du swap = racine carré de la RAM (en GB)
 dd if=/dev/zero of=/swapfile bs=1M count=(valeur en MiB e.g. 4096 pour 4G) status=progress
