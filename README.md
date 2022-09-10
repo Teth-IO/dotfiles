@@ -45,6 +45,5 @@ A faire :
   - couleur de mako et wofi
   - design de waybar
   - configurer AstroNvim
-  - configurer du zram
 
 ![Screenshot 1](./Images/1.png)
