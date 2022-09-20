@@ -41,7 +41,6 @@ Internet:
 => [liste des commandes](cheatsheet.txt)
 
 A faire :
-  - pasage en XFS
   - couleur de mako et wofi
   - design de waybar
   - configurer AstroNvim
