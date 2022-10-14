@@ -60,6 +60,7 @@ bindsym XF86AudioPrev exec playerctl previous
 #output * bg /home/a/Images/a.jpg fill
 
 exec wpaperd
+exec syncthing serve --no-browser --no-restart --logflags=0 
 
 #
 # Example configuration:
