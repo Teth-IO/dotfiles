@@ -58,3 +58,6 @@ Play = démarre le contenu
 Pause = met en pause le contenu
 Next = contenu suivant
 Previous = contenu précédent
+
+En cas de pb de maj : 
+sudo pacman -S archlinux-keyring
