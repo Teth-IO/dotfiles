@@ -1,49 +1,43 @@
 # dotfiles
 
-Mon envionnement de travail pour laptop sous ArchLinux.  
-Minimaliste, simple et efficace. 
+Setup de laptop pour ArchLinux.  
+Minimaliste, renforcé et moderne. 
 
+Sécurité :
 
-Eléments principaux:
+- kernel : linux-hardened en lockdown
+- Chiffrement : / et /home sous partition LUKS
+- MAC : AppArmor
+- Firewall : Firewalld
+- blacklisting de plusieurs modules de kernel et hardening de divers paramètres
+
+Eléments principaux :
   
 - Gestionnaire de fenêtre: sway
-- Bar de status: waybar
+- Bar de status: waybar (désactivable, on peut mettre les infos dans le terminal au niveau de powerlevel10k)
 - Lanceur d'application: wofi
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 - Police de caractère: FiraCode Nerd Font
   
-Utilitaires:
+Apps :
   
 - Terminal: kitty
 - Shell: zsh avec prezto et spaceship
 - Gestionnaire de fichier: ranger
 - Editeur de texte: AstroNvim
-- Traitement de texte: onlyoffice & TeX
+- Traitement de texte: libreoffice
 - Moniteur système: htop
 - Visionneuse de documents: zathura  
 - Visionneuse d'image: imv
-- Lecteur multimédia: mpv
-- Client mail: neomutt
-- Calendrier: khal
+- Lecteur multimédia: vlc-git
 - Gestionnaire de mot de passe: KeePassXC
-- To-dos: todoman
-
-Internet:
-- Gemini: amfora
-- Graphique: firefox
-- Console: elinks
+- Navigateur: firefox
 - Chiffrement DNS: dnscrypt-proxy
 
 
 => [installation de a à z](installation.txt)
 
 => [liste des commandes](cheatsheet.txt)
-
-A faire :
-  - couleur de mako et wofi
-  - design de waybar
-  - configurer AstroNvim
-  - ufw
 
 ![Screenshot 1](./Images/1.png)
