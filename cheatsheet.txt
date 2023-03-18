@@ -60,4 +60,14 @@ Next = contenu suivant
 Previous = contenu précédent
 
 En cas de pb de maj : 
-sudo pacman -S archlinux-keyring
+pacman -S archlinux-keyring
+
+lister les paquets inutiles :
+pacman -Qdtq
+Les supprimer :
+pacman -Qdtq | sudo pacman -Rs -
+Vider le cache :
+pacman -Sc
+
+Lister les paquets installés :
+pacman -Q
