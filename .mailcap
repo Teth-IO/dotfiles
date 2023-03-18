@@ -1,1 +1,0 @@
-text/html; elinks -no-connect -dump -dump-charset UTF-8 -dump-width 140 -default-mime-type text/html %s; needsterminal; copiousoutput; text/html; elinks -no-connect -dump -dump-charset UTF-8 -dump-width 140 -default-mime-type text/html %s; needsterminal; copiousoutput;
