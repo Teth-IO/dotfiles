@@ -1,15 +1,6 @@
-####Installation du système de base
-
-#setup d'installation :
-Si l'on dispose d'un second pc sous la main faire les manip suivante depuis un ssh permet de bénéficier du copier/coller
-Sinon tout faire à la main
-
-une fois que l'on a booté sur la clef d'installation:
-
-ssh:
-ip a -> trouver l'ip (dhcp par défaut si connecté en ethernet sinon voir le wiki pour setup une connection wifi)
-passwd -> changer le mdp root
-se ssh en root
+#########################################
+#### Installation du système de base ####
+#########################################
 
 #partitionnement des disques :
 
@@ -19,8 +10,8 @@ se ssh en root
 |--> /boot          /dev/sda1 EFI        boot 512 MB fat32     GRUB, kernel et EFI
 |--> LUKS encrypted /dev/sda2 linux fs        100%   encrypted block device chiffré
      |-->  LVM                           lvm  100%
-           |--> /                        root 25%    ext4      Tous les fichiers systèmes
-           |--> /home                    home 75%    ext4      fichiers utilisateurs
+           |--> /                        root 25%    xfs      Tous les fichiers systèmes
+           |--> /home                    home 75%    xfs      fichiers utilisateurs
 
 fdisk /dev/sda
 g
@@ -45,36 +36,28 @@ mkfs.xfs /dev/vg/root
 mkfs.xfs /dev/vg/home
 
 #montage:
-
 mount /dev/vg/root /mnt
 mount --mkdir /dev/vg/home /mnt/home
 mount --mkdir /dev/sda1 /mnt/boot
 
 #selection des mirroirs du gestionnaire de paquets
-
 reflector --country France --age 12 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
--> ignorer les erreurs 403
+!!! ignorer les erreurs 403
 
 #installation du système de base
-!!!sway ne fonctionne sous NVIDIA qu'avec nouveau, le driver open source. (pas conseillé pour le gaming)
-
-pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 vim dhcpcd reflector rsync
+pacstrap /mnt base linux-hardened linux-firmware mkinitcpio lvm2 vim dhcpcd reflector openssh
 
 #montage automatique des partitions
-
 genfstab -U /mnt >> /mnt/etc/fstab
 vim /mnt/etc/fstab
 -> remplacer les "rw, relatime" par "noatime"
--> remplacer le dernier 0 de / par 1 et celui des autres par 2
--> ajouter une entré dans la RAM pour /tmp comme suit
-tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
+-> vérifier que le dernier 0 de / (la racine du disque) par 1 et celui des autres est bien à 2
+-> ajouter une entré dans la RAM pour /tmp comme suit : tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 
 #entrer dans le nouveau système
-
 arch-chroot /mnt
 
 #swapfile (le zswap est configurer par défaut sous arch linux, créer un swapfile ici permettra d'obtenir un résultat similaire a du zram)
-
 -> taille du swap = racine carré de la RAM (en GB)
 dd if=/dev/zero of=/swapfile bs=1M count=(valeur en MiB e.g. 4096 pour 4G) status=progress
 chmod 0600 /swapfile
@@ -84,128 +67,123 @@ vim /etc/fstab
 -> ajouter le swapfile comme suit : /swapfile none swap sw 0 0
 
 #fuseau horaire
-
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc
 
 #locales
-
 vim /etc/locale.gen
--> dé-commenter fr_FR UTF-8
+-> dé-commenter : fr_FR UTF-8
 locale-gen
 vim /etc/locale.conf
--> insérer LANG=fr_FR.UTF-8
+-> insérer : LANG=fr_FR.UTF-8
 vim /etc/vconsole.conf
--> insérer KEYMAP=fr-latin9
+-> insérer : KEYMAP=fr-latin9
 
 #nom de la machine
-
 vim /etc/hostname
 -> entrer le nom de l'ordi
 
 #initramfs
-
 vim /etc/mkinitcpio.conf
 -> modifier comme suit : HOOKS=(base udev autodetect keyboard modconf block encrypt lvm2 filesystems fsck)
-mkinitcpio -p linux
+mkinitcpio -p linux-hardened
+!!!l'erreur fsck.xfs est normal
 
 #le bootloader
-
 pacman -S grub
 vim /etc/default/grub
--> dé-commenter GRUB_ENABLE_CRYPTODISK=y
+-> dé-commenter : GRUB_ENABLE_CRYPTODISK=y
 blkid
 vim /etc/default/grub
--> ajouter l'UUID de sda2 obetnu par blkid : GRUB_CMDLINE_LINUX="cryptdevice=UUID=UUID de /dev/sda2:cryptlvm root=/dev/vg/root"
+-> ajouter dans les gillemet de : GRUB_CMDLINE_LINUX="cryptdevice=UUID=UUID de /dev/sda2:cryptlvm root=/dev/vg/root"
 pacman -S efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot
 
 #maj du microcode automatique
-
 pacman -S intel-ucode
 -> amd-ucode pour AMD
 
-#génération de la config GRUB
-
-grub-mkconfig -o /boot/grub/grub.cfg
-
 #installer le zsh
-
 pacman -S zsh
 
 #ajouter un utilisateurs
-!!!On crée ici un compte administrateur. Voir le wiki pour les différents groupes d'utilisateurs
 useradd -m -G wheel -s /bin/zsh *nom*
+-> le groupe wheel permet l'utilisation de su. On peut aussi configurer sudo pour permettre à se groupe d'obtenir tout les privilèges
 
 #mot de passe
 passwd *nom du compte créer*
-passwd root
-
-#installer sudo
-!!!Dans la continuité de notre compte administrateur on lui donne ici accès aux commandes root sans mdp 
-
-pacman -S sudo
-chmod 700 /etc/sudoers
-vim /etc/sudoers
-//de-commenter la ligne 85 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
+passwd
 
 #outils de base nécessaire à diverses installations
+pacman -S --needed base-devel
 
-sudo pacman -S --needed base-devel
--> tous prendre
-
-#networkmanager (car nmtui pour le wifi)
-
-pacman -S networkmanager openssh man
+#networkmanager (car nmtui pour le wifi, sinon un dhcpd suffit)
+pacman -S networkmanager man
 systemctl enable NetworkManager
+
+#AppArmor & lockdown
+pacman -S apparmor
+systemctl enable apparmor
+vim /etc/default/grub
+-> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT=" loglevel=3 quiet lsm=landlock,lockdown,yama,integrity,apparmor,bpf lockdown=integrity"
+grub-mkconfig -o /boot/grub/grub.cfg
+git clone https://aur.archlinux.org/krathalans-apparmor-profiles-git.git
+cd krathalans-apparmor-profiles
+makepkg -si
+!!!en cas de pb sur une application désactiver le profiles correspondant pour débugage
+=> sudo ln -s /etc/apparmor.d/{profile.name-here} /etc/apparmor.d/disable/
+=> sudo apparmor_parser -R /etc/apparmor.d/{profile.name-name-here}
+
+#firewalld
+pacman -S firewalld
+systemctl enable firewalld
 
 reboot
 
 #démarrer sur l'os nouvellement installé
 
-####Installation du rice et des utilitaires
-!!!!je n'installe pas de display manager
-!!tout installer en utilisateur
-donc se ssh en utilisateur ou se connecter sur le compte utilisateur
+##################################################
+#### Installation du rice et des utilitaires #####
+##################################################
 
 #activer le ssh
-sudo systemctl start sshd
 
-sudo pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland light
+systemctl enable sshd
+systemctl start sshd
+
+#première partie du shell
+pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland light
 
 #FiraCode Nerd Font
+su *user*
 git clone  https://aur.archlinux.org/nerd-fonts-fira-code.git
 cd nerd-fonts-fira-code
 makepkg -si
 
 #prezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
--> en une commande
+/en une commande
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
--> ignorer les erreurs de fichier existant, on remplace a la fin les liens symbolique dans ~ par les deux .zsh du dépôt
+/ignorer les erreurs de fichier existant, on remplace a la fin les liens symbolique dans ~ par les deux .zsh du dépôt
 
 #starship
-sudo pacman -S starship
+pacman -S starship
 zsh
--> et profiter de la beauté du nouveau shell
+//et profiter de la beauté du nouveau shell
+
+#theme powerlevel10k :
+-> ajouter à ~/.zpreztorc (partie prompt) : zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 #utilitaires
-sudo pacman -S ripgrep imv fzf less ranger mpv htop neofetch python-pip grim
--> pipewire-jack, wireplumber
+pacman -S ripgrep imv fzf less ranger htop neofetch python-pip grim
 pip install pillow
-git clone https://aur.archlinux.org/buku.git
-cd buku
-makepkg -si
-sudo pacman -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps 
+pacman -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps
 
-#autres
-sudo pacman -S neomutt todoman khal libnotify
-
-#Navigateurs
-sudo pacman -S amfora firefox elinks
+#Navigateur
+pacman -S firefox
 
 #daemon de fond d'ecran: wpaperd
 git clone https://aur.archlinux.org/wpaperd.git
@@ -214,7 +192,8 @@ makepkg -si
 -> modifier le fichier output.conf avec les bons paramètres
 
 #son
-sudo pacman -S pipewire-pulse alsa-utils
+pacman -S pipewire-pulse alsa-utils
+-> alsamixer pour gérer le son (speaker et pcm au max, master pour gérer le volume)
 
 #chiffrement des requêtes DNS
 sudo pacman -S dnscrypt-proxy bind
@@ -226,15 +205,10 @@ dns=none
 => modifer /etc/resolv.conf comme suit:
 nameserver ::1
 nameserver 127.0.0.1
--> l'activer au démarrage
+//l'activer au démarrage
 sudo systemctl enable dnscrypt-proxy
--> et l'activer maintenant sinon plus de dns
+//et l'activer maintenant sinon plus de dns
 sudo systemctl start dnscrypt-proxy
-
-#carnet d'adresse neomutt
-git clone https://aur.archlinux.org/abook.git
-cd abook
-makepkg -si
 
 #outils pour vérifier la santé du disque dur
 sudo pacman -S smartmontools
@@ -245,33 +219,107 @@ git clone https://aur.archlinux.org/swaylock-effects-git.git
 cd swaylock-effects
 makepkg -si
 
--> copier coller les dots du dépot vers ~
--< virer les dossier d'installation git
+Fira Code Nerd Fonts compatible -> faire p10k configure depuis kitty
+  -> tout les icones doivent apparaitres
+  -> 1 lean -> 1 unicode -> 1 256 coleurs -> 2 24h -> 2 two ligne -> dotted -> no frame -> light? -> compact -> many icons -> concise -> transient -> verbose? -> yes
+vim .10k.zsh
+-> left prompt elements :
+	-> line 1 :
+	os-icon
 
-reboot
-après l'identification entrer sway pour charger l'interface graphique
+-> right prompt elements :
+	-> line 1 :
+	Commenté : command_execution_time
+	load
+	ram
+	-> line 2 :
+	battery
 
 !!!en cas d'erreur dans les fichier .zshenv et/ou .zshrc au démarrage les supprimer et les recréer en copiant le contenu avec éditeur de texte
 !!!en cas d'erreur de sway au démarrage (permsision denied) installer polkit -> sudo pacman -S polkit
 
-#pour ne pas dépendre de l'horloge du BIOS
-sudo pacman -Syu ntp
--> modifier les serveur dans /etc/ntp.conf comme suit
-server 0.fr.pool.ntp.org iburst
-server 1.fr.pool.ntp.org iburst
-server 2.fr.pool.ntp.org iburst
-server 3.fr.pool.ntp.org iburst
--> automatiser le démarrage du daemon
-sudo systemctl enable ntpd
--> le démarrer maintenant
-sudo systemctl start ntpd
+#pour ne pas dépendre de RTC du BIOS : NTS
+
+#editeur astronvim
+git clone https://aur.archlinux.org/astronvim.git
+cd astronvim
+makepkg -si
 
 #pour pc portable
 sudo pacman -S tlp
 sudo systemctl enable tlp
 sudo systemctl start tlp
--> pour les thinkpad la commande tlp-stat -b indique les modules de kernel a ajouté
--> pacman -S 'le module kernel indiqué'
+//pour les thinkpad la commande tlp-stat -b indique les modules de kernel a ajouté
+//pacman -S 'le module kernel indiqué'
 
-#pour les jeux voir steam, wine, lutris, heroic, legendary...
--> indice: activer le support proton dans steam
+#blacklisting de module :
+nvim /etc/modprobe.d/blacklist.conf
+-> :
+#protocole de réseau
+install dccp /bin/false
+install sctp /bin/false
+install rds /bin/false
+install tipc /bin/false
+install n-hdlc /bin/false
+install ax25 /bin/false
+install netrom /bin/false
+install x25 /bin/false
+install rose /bin/false
+install decnet /bin/false
+install econet /bin/false
+install af_802154 /bin/false
+install ipx /bin/false
+install psnap /bin/false
+install p8023 /bin/false
+install p8022 /bin/false
+install can /bin/false
+install atm /bin/false
+#fs
+install cramfs /bin/false
+install freevxfs /bin/false
+install jffs2 /bin/false
+install hfs /bin/false
+install hfsplus /bin/false
+install udf /bin/false
+install nfs /bin/true
+install nfsv3 /bin/true
+install nfsv4 /bin/true
+install gfs2 /bin/true
+#iptables (firewalld utilise nftables)
+install ip_tables /bin/false
+
+#hardening complementaire
+	#kernel
+sudo nvim /etc/sysctl.d/51-kernel.conf
+-> :
+kernel.unprivileged_bpf_disabled=1
+kernel.sysrq=4
+kernel.printk=3 3 3 3
+kernel.kexec_load_disabled=1
+kernel.unprivileged_userns_clone=0
+vm.unprivileged_userfaultfd=0
+	#réseau
+sudo nvim /etc/sysctl.d/51-network.conf
+-> :
+net.ipv4.tcp_rfc1337=1
+net.ipv4.conf.all.rp_filter=1
+net.ipv4.conf.default.rp_filter=1
+net.ipv4.conf.all.accept_redirects=0
+net.ipv4.conf.default.accept_redirects=0
+net.ipv4.conf.all.secure_redirects=0
+net.ipv4.conf.default.secure_redirects=0
+net.ipv6.conf.all.accept_redirects=0
+net.ipv6.conf.default.accept_redirects=0
+net.ipv4.conf.all.send_redirects=0
+net.ipv4.conf.default.send_redirects=0
+net.ipv6.conf.all.accept_ra=0
+net.ipv6.conf.default.accept_ra=0
+net.ipv4.tcp_sack=0
+net.ipv4.tcp_dsack=0
+net.ipv4.tcp_fack=0
+	#userspace
+sudo nvim /etc/sysctl.d/51-userspace.conf
+-> :
+kernel.yama.ptrace_scope=2
+fs.protected_fifos=2
+fs.protected_regular=2
