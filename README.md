@@ -9,7 +9,7 @@ Sécurité :
 - Chiffrement : / et /home sous partition LUKS
 - MAC : AppArmor
 - Firewall : Firewalld
-- blacklisting de plusieurs modules de kernel et hardening de divers paramètres
+- blacklisting de plusieurs modules de kernel et hardening de divers paramètres du kernel en plus
 
 Eléments principaux :
   
