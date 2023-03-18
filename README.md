@@ -23,7 +23,7 @@ Eléments principaux :
 Apps :
   
 - Terminal: kitty
-- Shell: zsh avec prezto et spaceship
+- Shell: zsh avec prezto, spaceship et powerlevel10k
 - Gestionnaire de fichier: ranger
 - Editeur de texte: AstroNvim
 - Traitement de texte: libreoffice
