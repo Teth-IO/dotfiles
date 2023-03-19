@@ -2,6 +2,8 @@
 #### Installation du système de base ####
 #########################################
 
+Depuis le média d'installation
+
 #partitionnement des disques :
 
 //On part sur un UEFI/GPT avec chiffrement de la parition principal et LVM
@@ -168,7 +170,7 @@ reboot
 systemctl start sshd
 
 #première partie du shell
-pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland light
+pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland light wl-copy
 
 #FiraCode Nerd Font
 su *user*
