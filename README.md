@@ -11,6 +11,7 @@ Sécurité :
 - Firewall : Firewalld
 - blacklisting de plusieurs modules de kernel et hardening de divers paramètres du kernel en plus
 - maj du microcode automatique
+- renforcement des paramètres de boot
 
 Eléments principaux :
   
