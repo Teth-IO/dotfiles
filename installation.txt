@@ -288,3 +288,10 @@ cd
 makepkg -si
 
 e.g. : yay -S vlc-git (pour la version de dev de git, avec un meilleur support de wayland)
+
+#bluetooth
+pacman -S bluez bluez-utils
+yay -S bluetuith
+-> pour se connecter à un périphérique :
+systemctl start bluetooth.service
+bluetuith
