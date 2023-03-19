@@ -4,17 +4,17 @@ Arc-Dark Color Scheme
 */
 
 @define-color highlight #ffffff;
-@define-color base1  rgba(40 ,40 ,40 ,0.95 );
-@define-color base2  rgba(40 ,40 ,40 ,0.95 );
-@define-color base3  rgba(50 ,48 ,47 ,0.75 );
+@define-color base1  rgba(0 ,0 ,0 ,0.9 );
+@define-color base2  rgba(0 ,0 ,0 ,0.9 );
+@define-color base3  rgba(0 ,0 ,0 ,0.9 );
 
 *{
-    font-family: JetbrainsMono;
+    font-family: FiraCode Nerd Font;
     font-size: 12px ;
 }
 
 window {
-    border: 2px solid @highlight;
+    border: 2px solid #000000;
     border-radius: 10px;  
     background-color: @base2;
 
@@ -59,6 +59,6 @@ window {
 
 #entry:selected {
     background-color: transparent;
-    border: 2px solid @highlight;
+    border: 2px solid #000000;
     border-radius:10px;
 }
