@@ -53,6 +53,7 @@ pacstrap /mnt base linux-hardened linux-firmware mkinitcpio lvm2 vim dhcpcd refl
 genfstab -U /mnt >> /mnt/etc/fstab
 vim /mnt/etc/fstab
 -> remplacer les "rw, relatime" par "noatime"
+-> pour /boot on peut rajouter aussi les options noexec,nodev,nosuid
 -> vérifier que le dernier 0 de / (la racine du disque) par 1 et celui des autres est bien à 2
 -> ajouter une entré dans la RAM pour /tmp comme suit : tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 
