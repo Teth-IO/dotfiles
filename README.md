@@ -47,5 +47,5 @@ Apps :
 
 divers truc manquants :
 
-hardened malloc non présente dans glibc donc pas dispo pour notre système
-pas de secure boot a cause du manque du support de certains firmware pour les clefs personnels
+- hardened malloc non présente dans glibc donc pas dispo pour notre système
+- pas de secure boot a cause du manque du support de certains firmware pour les clefs personnels
