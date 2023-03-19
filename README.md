@@ -32,7 +32,7 @@ Apps :
 - Moniteur système: htop
 - Visionneuse de documents: zathura  
 - Visionneuse d'image: imv
-- Lecteur multimédia: vlc-git
+- Lecteur multimédia: mpv
 - Gestionnaire de mot de passe: KeePassXC
 - Navigateur: firefox
 - Chiffrement DNS: dnscrypt-proxy
@@ -49,9 +49,3 @@ Apps :
 ![Screenshot 3](./Images/3.png)
 
 ![Screenshot 4](./Images/5.png)
-
-
-divers truc manquants :
-
-- hardened malloc pas encore dispo dans glibc
-- pas de secure boot a cause du manque du support de certains firmware pour les clefs personnels
