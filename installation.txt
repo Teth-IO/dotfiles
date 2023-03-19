@@ -130,11 +130,18 @@ grep . /sys/devices/system/cpu/vulnerabilities/*
 vim /etc/default/grub
 -> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="...  randomize_kstack_offset=on"
 
-#AppArmor & lockdown
+#AppArmor
 pacman -S apparmor
 systemctl enable apparmor
 vim /etc/default/grub
--> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="... lsm=landlock,lockdown,yama,integrity,apparmor,bpf lockdown=integrity"
+-> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="... lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
+
+#mode lockdown du kernel
+vim /etc/default/grub
+-> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="... lockdown=integrity"
+#désactive les fonctionnalités du kernel qui permettent à l'espace utilisateur de modifier le kernel en cours de fonctionnement
+
+#validation de la config de grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #profiles d'AppArmor en plus
