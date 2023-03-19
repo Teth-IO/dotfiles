@@ -121,12 +121,23 @@ pacman -S --needed base-devel
 pacman -S networkmanager man
 systemctl enable NetworkManager
 
+#penser à vérifier les vulnérabilités du CPU
+grep . /sys/devices/system/cpu/vulnerabilities/*
+-> doit être en mitigated, unknown ou not affected sinon inclure les mitigations correspondantes dans les paramètres de boot (GRUB_CMDLINE_LINUX_DEFAULT)
+-> a noter que la mitigation pour SMT n'est pas renforcé par défaut car cela à un impact massif sur les performances
+
+#renforcement complémentaire des paramètres de démarrages, notre kernel-hardened en inclus par défaut
+vim /etc/default/grub
+-> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="...  randomize_kstack_offset=on"
+
 #AppArmor & lockdown
 pacman -S apparmor
 systemctl enable apparmor
 vim /etc/default/grub
--> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT=" loglevel=3 quiet lsm=landlock,lockdown,yama,integrity,apparmor,bpf lockdown=integrity"
+-> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="... lsm=landlock,lockdown,yama,integrity,apparmor,bpf lockdown=integrity"
 grub-mkconfig -o /boot/grub/grub.cfg
+
+#profiles d'AppArmor en plus
 git clone https://aur.archlinux.org/krathalans-apparmor-profiles-git.git
 cd krathalans-apparmor-profiles
 makepkg -si
