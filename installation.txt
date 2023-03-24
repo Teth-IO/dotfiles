@@ -185,9 +185,9 @@ makepkg -si
 
 #hardened malloc
 yay -S hardened-malloc-git
-nvim /etc/ld.so.preload
+vim /etc/ld.so.preload
 -> mettre : /usr/lib/libhardened_malloc.so
-nvim /etc/sysctl.d/hardened_malloc.conf
+vim /etc/sysctl.d/hardened_malloc.conf
 -> mettre : vm.max_map_count = 1048576
 
 reboot
