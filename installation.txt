@@ -2,6 +2,9 @@
 #### Installation du système de base ####
 #########################################
 
+-> prérequis = Bios en UEFI
+-> idéalement faire l'installation depuis un ssh
+
 Depuis le média d'installation
 
 #partitionnement des disques :
@@ -124,6 +127,10 @@ pacman -S --needed base-devel
 pacman -S networkmanager man
 systemctl enable NetworkManager
 
+#######################
+##### Hardening #######
+#######################
+
 #penser à vérifier les vulnérabilités du CPU
 grep . /sys/devices/system/cpu/vulnerabilities/*
 -> doit être en mitigated, unknown ou not affected sinon inclure les mitigations correspondantes dans les paramètres de boot (GRUB_CMDLINE_LINUX_DEFAULT)
@@ -158,6 +165,30 @@ makepkg -si
 #firewalld
 pacman -S firewalld
 systemctl enable firewalld
+
+#Dossier hardening : blacklisting de module :
+git clone https://github.com/Teth-IO/dotfiles/edit/main/installation.txt
+mettre blacklist.conf dans /etc/modprobe.d/blacklist.conf
+
+#Dossier hardening : hardening complementaire
+	#kernel
+mettre 51-kernel.conf dans /etc/sysctl.d/51-kernel.conf
+	#réseau
+mettre 51-network.conf dans /etc/sysctl.d/51-network.conf
+	#userspace
+mettre 51-userspace dans /etc/sysctl.d/51-userspace.conf
+
+#pour la gestion des dépots (installation, maj...) AUR on peut utiliser yay
+git clone https://aur.archlinux.org/yay.git
+cd
+makepkg -si
+
+#hardened malloc
+yay -S hardened-malloc-git
+nvim /etc/ld.so.preload
+-> mettre : /usr/lib/libhardened_malloc.so
+nvim /etc/sysctl.d/hardened_malloc.conf
+-> mettre : vm.max_map_count = 1048576
 
 reboot
 
@@ -271,29 +302,6 @@ sudo systemctl enable tlp
 sudo systemctl start tlp
 //pour les thinkpad la commande tlp-stat -b indique les modules de kernel a ajouté
 //pacman -S 'le module kernel indiqué'
-
-#Dossier hardening : blacklisting de module :
-mettre blacklist.conf dans /etc/modprobe.d/blacklist.conf
-
-#Dossier hardening : hardening complementaire
-	#kernel
-mettre 51-kernel.conf dans /etc/sysctl.d/51-kernel.conf
-	#réseau
-mettre 51-network.conf dans /etc/sysctl.d/51-network.conf
-	#userspace
-mettre 51-userspace dans /etc/sysctl.d/51-userspace.conf
-
-#pour la gestion des dépots (installation, maj...) AUR on peututiliser yay
-git clone https://aur.archlinux.org/yay.git
-cd
-makepkg -si
-
-#hardened malloc
-yay -S hardened-malloc-git
-nvim /etc/ld.so.preload
--> mettre : /usr/lib/libhardened_malloc.so
-nvim /etc/sysctl.d/hardened_malloc.conf
--> mettre : vm.max_map_count = 1048576
 
 #bluetooth
 pacman -S bluez bluez-utils
