@@ -169,7 +169,7 @@ pacman -S firewalld
 systemctl enable firewalld
 
 #Dossier hardening : blacklisting de module :
-git clone https://github.com/Teth-IO/dotfiles/edit/main/installation.txt
+git clone https://github.com/Teth-IO/dotfiles
 mettre blacklist.conf dans /etc/modprobe.d/blacklist.conf
 
 #Dossier hardening : hardening complementaire
