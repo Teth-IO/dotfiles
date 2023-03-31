@@ -31,7 +31,7 @@ write
 !!!le mot de passe doit être saissie comme si on utilisait un clavier qwerty
 
 mkfs.fat -F 32 /dev/sda1
-cryptsetup luksFormat --type luks1 --use-random -S 1 -s 512 -h sha512 -i 5000 /dev/sda2
+cryptsetup luksFormat --type luks2 --use-random -S 1 -s 512 -h sha512 -i 5000 /dev/sda2
 cryptsetup open /dev/sda2 cryptlvm
 pvcreate /dev/mapper/cryptlvm
 vgcreate vg /dev/mapper/cryptlvm
