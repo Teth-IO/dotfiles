@@ -155,8 +155,10 @@ vim /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #profiles d'AppArmor en plus
+pacman -S git
 git clone https://aur.archlinux.org/krathalans-apparmor-profiles-git.git
-cd krathalans-apparmor-profiles
+cd krathalans-apparmor-profiles-git
+gpg --recv-keys C0F9AEE56E47D174
 makepkg -si
 !!!en cas de pb sur une application désactiver le profiles correspondant pour débugage
 => sudo ln -s /etc/apparmor.d/{profile.name-here} /etc/apparmor.d/disable/
