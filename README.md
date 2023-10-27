@@ -38,6 +38,7 @@ Apps :
 - Navigateur: firefox
 - Chiffrement DNS: dnscrypt-proxy
 
+TODO -> Encrypted root + Secure boot + Unified kernel image
 
 => [installation de a à z](installation.txt)
 
