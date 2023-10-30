@@ -12,11 +12,9 @@ Depuis le média d'installation
 //On part sur un UEFI/GPT avec chiffrement de la parition principal et LVM
 //shema du partitionnement :
 /dev/sda
-|--> /boot          /dev/sda1 EFI        boot 512 MB fat32     GRUB, kernel et EFI
+|--> /efi           /dev/sda1 EFI        boot 512 MB fat32     UKI
 |--> LUKS encrypted /dev/sda2 linux fs        100%   encrypted block device chiffré
-     |-->  LVM                           lvm  100%
-           |--> /                        root 25%    xfs      Tous les fichiers systèmes
-           |--> /home                    home 75%    xfs      fichiers utilisateurs
+     |-->  mapper                        /    100%   XFS
 
 fdisk /dev/sda
 g
@@ -32,18 +30,13 @@ write
 
 mkfs.fat -F 32 /dev/sda1
 cryptsetup luksFormat --type luks2 --use-random -S 1 -s 512 -h sha512 -i 5000 /dev/sda2
-cryptsetup open /dev/sda2 cryptlvm
-pvcreate /dev/mapper/cryptlvm
-vgcreate vg /dev/mapper/cryptlvm
-lvcreate -L (nb de giga)G vg -n root
-lvcreate -l 100%FREE vg -n home
-mkfs.xfs /dev/vg/root
-mkfs.xfs /dev/vg/home
+cryptsetup open /dev/sda2 crypt
+pvcreate /dev/mapper/crypt
+mkfs.xfs /dev/mapper/crypt
 
 #montage:
-mount /dev/vg/root /mnt
-mount --mkdir /dev/vg/home /mnt/home
-mount --mkdir /dev/sda1 /mnt/boot
+mount /dev/mapper/crypt /mnt
+mount --mkdir /dev/sda1 /mnt/efi
 
 #selection des mirroirs du gestionnaire de paquets
 reflector --country France --age 12 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
@@ -56,7 +49,7 @@ pacstrap /mnt base linux-hardened linux-firmware mkinitcpio lvm2 vim dhcpcd refl
 genfstab -U /mnt >> /mnt/etc/fstab
 vim /mnt/etc/fstab
 -> remplacer les "rw, relatime" par "noatime"
--> pour /boot on peut rajouter aussi les options noexec,nodev,nosuid
+-> pour /efi on peut rajouter aussi les options noexec,nodev,nosuid
 -> vérifier que la colonne pass est à 1 pour / (la racine du disque) et à 2 pour les autres
 -> ajouter une entré dans la RAM pour /tmp comme suit : tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
 
@@ -80,34 +73,27 @@ hwclock --systohc
 vim /etc/locale.gen
 -> dé-commenter : fr_FR UTF-8
 locale-gen
-vim /etc/locale.conf
--> insérer : LANG=fr_FR.UTF-8
-vim /etc/vconsole.conf
--> insérer : KEYMAP=fr-latin9
+
+cat << EOF > /etc/locale.conf
+LANG=fr_FR.UTF-8
+EOF
+
+cat << EOF > /etc/vconsole.conf
+KEYMAP=fr-latin9
+EOF
 
 #nom de la machine
-vim /etc/hostname
--> entrer le nom de l'ordi
-
-#initramfs
-vim /etc/mkinitcpio.conf
--> modifier comme suit : HOOKS=(base udev autodetect keyboard modconf block encrypt lvm2 filesystems fsck)
-mkinitcpio -p linux-hardened
-!!!l'erreur fsck.xfs est normal
-
-#le bootloader
-pacman -S grub
-vim /etc/default/grub
--> dé-commenter : GRUB_ENABLE_CRYPTODISK=y
-blkid
-vim /etc/default/grub
--> ajouter dans les gillemet de : GRUB_CMDLINE_LINUX="cryptdevice=UUID=UUID de /dev/sda2:cryptlvm root=/dev/vg/root"
-pacman -S efibootmgr
-grub-install --target=x86_64-efi --efi-directory=/boot
+cat << EOF > /etc/hostname
+*nom*
+EOF
 
 #maj du microcode automatique
 pacman -S intel-ucode
 -> amd-ucode pour AMD
+
+#initramfs
+vim /etc/mkinitcpio.conf
+-> modifier comme suit : HOOKS=(systemd autodetect modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)
 
 #installer le zsh
 pacman -S zsh
@@ -136,23 +122,18 @@ grep . /sys/devices/system/cpu/vulnerabilities/*
 -> doit être en mitigated, unknown ou not affected sinon inclure les mitigations correspondantes dans les paramètres de boot (GRUB_CMDLINE_LINUX_DEFAULT)
 -> a noter que la mitigation pour SMT n'est pas renforcé par défaut car cela à un impact massif sur les performances
 
-#renforcement complémentaire des paramètres de démarrages, notre kernel-hardened en inclus par défaut
-vim /etc/default/grub
--> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="...  randomize_kstack_offset=on"
+#renforcement complémentaire des paramètres du kernel, notre kernel-hardened en inclus par défaut
+#demarre le kernel en lockdown (modification impossible depuis le userspace lors de son fonctionnemment)
+#Active apparmor
+mkdir /etc/cmdline.d
+cat << EOF > /etc/cmdline.d/security.conf
+# renforcement des paramètres de démarrages + apparmor
+lsm=landlock,lockdown,yama,integrity,apparmor,bpf randomize_kstack_offset=on lockdown=integrity
+EOF
 
 #AppArmor
 pacman -S apparmor
 systemctl enable apparmor
-vim /etc/default/grub
--> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="... lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
-
-#mode lockdown du kernel
-vim /etc/default/grub
--> ajouter dans GRUB_CMDLINE_LINUX_DEFAULT="... lockdown=integrity"
-#désactive les fonctionnalités du kernel qui permettent à l'espace utilisateur de modifier le kernel en cours de fonctionnement
-
-#validation de la config de grub
-grub-mkconfig -o /boot/grub/grub.cfg
 
 #profiles d'AppArmor en plus
 pacman -S git
@@ -191,6 +172,36 @@ vim /etc/ld.so.preload
 -> mettre : /usr/lib/libhardened_malloc.so
 vim /etc/sysctl.d/hardened_malloc.conf
 -> mettre : vm.max_map_count = 1048576
+
+#indique a l'initrams de dechiffrer le parition LUKS
+cat << EOF > /etc/cmdline.d/root.conf
+rd.luks.name=*UUID de /dev/sda2*=root root=/dev/mapper/root
+EOF
+
+#config Unified kernel image -mkinitcpio
+cat << EOF > /etc/mkinitcpio.d/linux-hardened.preset
+ALL_kver="/boot/vmlinuz-linux-hardened"
+ALL_microcode="/boot/intel-ucode.img"
+
+PRESETS=('default')
+
+default_uki="/efi/EFI/Linux/arch-linux-hardened.efi"
+default_options="--splash=/usr/share/systemd/bootctl/splash-arch.bmp"
+EOF
+
+#generation
+mkdir -p /efi/EFI/Linux
+mkinitcpio -p linux-hardened
+
+#creer la boot entry
+pacman -S efibootmgr
+efibootmgr --create --disk /dev/sda --part 1 --label "ArchLinux-Hardened" --loader 'EFI\Linux\arch-linux-hardened.efi'
+
+#secure boot 
+voir la https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Putting_firmware_in_%22Setup_Mode%22
+
+#maj UKI apres maj kernel ou microcode
+https://wiki.archlinux.org/title/Unified_kernel_image#pacman_hook
 
 reboot
 
