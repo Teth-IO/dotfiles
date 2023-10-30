@@ -6,12 +6,10 @@ Minimaliste, renforcé et moderne.
 Sécurité :
 
 - kernel : linux-hardened en lockdown
-- Chiffrement : / et /home sous partition LUKS
+- Chiffrement : Sous partition LUKS2
 - MAC : AppArmor
 - Firewall : Firewalld
 - blacklisting de plusieurs modules de kernel et hardening de divers paramètres du kernel en plus
-- maj du microcode automatique
-- renforcement des paramètres de boot
 - malloc renforcé, appliqué pour l'ensemble du système
 
 Eléments principaux :
@@ -37,8 +35,6 @@ Apps :
 - Gestionnaire de mot de passe: KeePassXC
 - Navigateur: firefox
 - Chiffrement DNS: dnscrypt-proxy
-
-TODO -> Encrypted root + Secure boot + Unified kernel image
 
 => [installation de a à z](installation.txt)
 
