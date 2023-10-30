@@ -119,7 +119,7 @@ systemctl enable NetworkManager
 
 #penser à vérifier les vulnérabilités du CPU
 grep . /sys/devices/system/cpu/vulnerabilities/*
--> doit être en mitigated, unknown ou not affected sinon inclure les mitigations correspondantes dans les paramètres de boot (GRUB_CMDLINE_LINUX_DEFAULT)
+-> doit être en mitigated, unknown ou not affected sinon inclure les mitigations correspondantes dans les paramètres du kernel (/etc/cmdline.d/security.conf)
 -> a noter que la mitigation pour SMT n'est pas renforcé par défaut car cela à un impact massif sur les performances
 
 #renforcement complémentaire des paramètres du kernel, notre kernel-hardened en inclus par défaut
