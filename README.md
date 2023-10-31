@@ -36,6 +36,8 @@ Apps :
 - Navigateur: firefox
 - Chiffrement DNS: dnscrypt-proxy
 
+=> voir dechiffrement par fido2 + secure boot
+
 => [installation de a à z](installation.txt)
 
 => [liste des commandes](cheatsheet.txt)
