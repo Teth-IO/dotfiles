@@ -7,7 +7,7 @@ Sécurité :
 
 - kernel : linux-hardened en lockdown<br />
 =>! revoir pour chercher la source d'upsstream et la KSPP
-- Chiffrement : Sous partition LUKS2<br />
+- Chiffrement : tous sous LUKS2, seule l'UKI est exposée mais verifier par secure-boot<br />
 =>! revoir pour implémenter systemd-cryptenroll (dechiffrement LUKS non plus avec mot de passe mais clef FIDO2)
 - MAC : AppArmor<br />
 =>! revoir pour passer à SELinux<br />
