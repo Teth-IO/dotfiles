@@ -5,12 +5,12 @@ Minimaliste, renforcé et moderne.
 
 Sécurité :
 
-- kernel : linux-hardened en lockdown
+- kernel : linux-hardened en lockdown<br />
 =>! revoir pour chercher la source d'upsstream et la KSPP
-- Chiffrement : Sous partition LUKS2
+- Chiffrement : Sous partition LUKS2<br />
 =>! revoir pour implémenter systemd-cryptenroll (dechiffrement LUKS non plus avec mot de passe mais clef FIDO2)
 - MAC : AppArmor
-=>! revoir pour passer à SELinux
+=>! revoir pour passer à SELinux<br />
 - Firewall : Firewalld
 - blacklisting de plusieurs modules de kernel et hardening de divers paramètres du kernel en plus
 - Hardened malloc, appliqué pour l'ensemble du système
