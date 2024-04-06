@@ -20,6 +20,8 @@ Eléments principaux :
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 
+=> revoir pour implémenter systemd-cryptenroll (dechiffrement LUKS non plus avec mot de passe mais clef FIDO2)
+
 => [installation de a à z](installation.txt)
 
 => [liste des commandes](cheatsheet.txt)
