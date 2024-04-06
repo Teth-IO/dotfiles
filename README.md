@@ -19,22 +19,6 @@ Eléments principaux :
 - Lanceur d'application: wofi
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
-- Police de caractère: FiraCode Nerd Font
-  
-Apps :
-  
-- Terminal: kitty
-- Shell: zsh avec prezto, spaceship et powerlevel10k
-- Gestionnaire de fichier: ranger
-- Editeur de texte: AstroNvim
-- Traitement de texte: libreoffice
-- Moniteur système: htop
-- Visionneuse de documents: zathura  
-- Visionneuse d'image: imv
-- Lecteur multimédia: mpv
-- Gestionnaire de mot de passe: KeePassXC
-- Navigateur: firefox
-- Chiffrement DNS: dnscrypt-proxy
 
 => voir dechiffrement par fido2 + secure boot
 
