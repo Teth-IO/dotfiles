@@ -6,11 +6,14 @@ Minimaliste, renforcé et moderne.
 Sécurité :
 
 - kernel : linux-hardened en lockdown
+=>! revoir pour chercher la source d'upsstream et la KSPP
 - Chiffrement : Sous partition LUKS2
+=>! revoir pour implémenter systemd-cryptenroll (dechiffrement LUKS non plus avec mot de passe mais clef FIDO2)
 - MAC : AppArmor
+=>! revoir pour passer à SELinux
 - Firewall : Firewalld
 - blacklisting de plusieurs modules de kernel et hardening de divers paramètres du kernel en plus
-- malloc renforcé, appliqué pour l'ensemble du système
+- Hardened malloc, appliqué pour l'ensemble du système
 
 Eléments principaux :
   
@@ -19,8 +22,6 @@ Eléments principaux :
 - Lanceur d'application: wofi
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
-
-=> revoir pour implémenter systemd-cryptenroll (dechiffrement LUKS non plus avec mot de passe mais clef FIDO2)
 
 => [installation de a à z](installation.txt)
 
