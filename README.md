@@ -20,8 +20,6 @@ Eléments principaux :
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 
-=> voir dechiffrement par fido2 + secure boot
-
 => [installation de a à z](installation.txt)
 
 => [liste des commandes](cheatsheet.txt)
