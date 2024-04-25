@@ -1,5 +1,7 @@
 # dotfiles
 
+<details>
+<summary><b>vieille cond arch linux</b></summary>
 Setup de laptop pour ArchLinux.  
 Minimaliste, renforcé et moderne. 
 
@@ -23,14 +25,16 @@ Eléments principaux :
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 
-=> [installation de a à z](installation.txt)
+=> [installation de a à z](./old%20arch/installation.txt
 
-=> [liste des commandes](cheatsheet.txt)
+=> [liste des commandes](./old%20arch/cheatsheet.txt)
 
-![Screenshot 1](./Images/1.png)
+![Screenshot 1](./old%20arch/Images/1.png)
 
-![Screenshot 2](./Images/2.png)
+![Screenshot 2](./old%20arch/Images/2.png)
 
-![Screenshot 3](./Images/3.png)
+![Screenshot 3](./old%20arch/Images/3.png)
 
-![Screenshot 4](./Images/5.png)
+![Screenshot 4](./old%20arch/Images/5.png)
+</details>
+
