@@ -1,7 +1,7 @@
 # dotfiles
 
 <details>
-<summary><b>vieille cond arch linux</b></summary>
+<summary><b>vieille conf arch linux</b></summary>
 
 Setup de laptop pour ArchLinux.  
 Minimaliste, renforcé et moderne. 
