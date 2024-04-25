@@ -25,7 +25,7 @@ Eléments principaux :
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 
-=> [installation de a à z](./old%20arch/installation.txt
+=> [installation de a à z](./old%20arch/installation.txt)
 
 => [liste des commandes](./old%20arch/cheatsheet.txt)
 
@@ -38,3 +38,8 @@ Eléments principaux :
 ![Screenshot 4](./old%20arch/Images/5.png)
 </details>
 
+<details>
+<summary><b>conf librewolf</b></summary>
+conf perso librewolf
+vertical fox et custom color
+</details>
