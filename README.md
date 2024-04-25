@@ -2,6 +2,7 @@
 
 <details>
 <summary><b>vieille cond arch linux</b></summary>
+
 Setup de laptop pour ArchLinux.  
 Minimaliste, renforcé et moderne. 
 
@@ -40,6 +41,7 @@ Eléments principaux :
 
 <details>
 <summary><b>conf librewolf</b></summary>
-conf perso librewolf
-vertical fox et custom color
+
+conf perso librewolf<br />
+vertical fox et custom color<br />
 </details>
