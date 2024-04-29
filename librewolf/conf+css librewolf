@@ -13,6 +13,11 @@ media.autoplay.allow-extension-background-pages = false
 media.autoplay.block-event.enabled = true
 media.autoplay.blocking_policy = 1
 
+uBlock :
+--------
+medium mode -> https://github.com/gorhill/uBlock/wiki/Blocking-mode:-medium-mode
+Les filter lists Easy & AdGuard complémentaire
+
 --------------------- customization CSS ---------------------
 
 https://github.com/christorange/VerticalFox
