@@ -34,6 +34,9 @@ userChrome.css :
 --urlbar-bg: #3f3f3f;
 --urldrop-bg: #302020;
 
+# depuis la version 126 :
+remplacer --urlbar-toolbar-height with --urlbar-container-height
+
 userContent.css :
 -----------------
 # voir fichier
