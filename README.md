@@ -45,3 +45,10 @@ Eléments principaux :
 conf perso librewolf<br />
 vertical fox et custom color<br />
 </details>
+
+<details>
+<summary><b>conf bazzite</b></summary>
+
+note pour bazzite<br />
+zero maintenance et presque zero config<br />
+</details>

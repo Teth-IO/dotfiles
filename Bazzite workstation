@@ -2,9 +2,9 @@ Note pour bazzite :
 
 plus :
 immutable
-auto update
+auto update transactionnelle
 secure boot (avec MOK)
-selinux enabled enforcing
+selinux enabled et enforcing
 FDE :
   Install sous LUKS
   une fois dans le system # ujust setup-luks-tpm-unlock
