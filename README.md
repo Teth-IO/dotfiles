@@ -1,10 +1,25 @@
 # dotfiles
 
 <details>
+<summary><b>conf web browser librewolf</b></summary>
+
+conf perso librewolf<br />
+vertical fox et custom color<br />
+</details>
+
+<details>
+<summary><b>conf workstation bazzite</b></summary>
+
+note pour bazzite<br />
+zero maintenance et presque zero config<br />
+</details>
+
+------------------------------------- OBSOLÈTE --------------------------------------
+
+<details>
 <summary><b>vieille conf arch linux</b></summary>
 
-Setup de laptop pour ArchLinux.  
-Minimaliste, renforcé et moderne. 
+Ancien setup pour ArchLinux renforce (avant de passer aux distro immutables)
 
 Sécurité :
 
@@ -37,18 +52,4 @@ Eléments principaux :
 ![Screenshot 3](./old%20arch/Images/3.png)
 
 ![Screenshot 4](./old%20arch/Images/5.png)
-</details>
-
-<details>
-<summary><b>conf librewolf</b></summary>
-
-conf perso librewolf<br />
-vertical fox et custom color<br />
-</details>
-
-<details>
-<summary><b>conf bazzite</b></summary>
-
-note pour bazzite<br />
-zero maintenance et presque zero config<br />
 </details>
