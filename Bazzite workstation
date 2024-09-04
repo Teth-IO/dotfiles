@@ -1,0 +1,26 @@
+Note pour bazzite :
+
+plus :
+immutable
+auto update
+secure boot (avec MOK)
+selinux enabled enforcing
+FDE :
+  Install sous LUKS
+  une fois dans le system # ujust setup-luks-tpm-unlock
+wayland et pipewire
+
+moins :
+os-tree non compatible systemd-boot
+
+userland :
+
+--[ WIP nextcloud compte en ligne pour gnome
+pas possible d'ignorer le cert auto signe pour lie nextcloud a gnome en compte en ligne (marchais sous bluefin)
+/etc/pki/ca-trust/source/anchors/ et non pas /usr/share/...
+update-ca-trust et non pas update-ca-certificates
+-> revoir qund nextcloud reinstaller sous nextcloud-snap
+
+--[ WIP pas de son/micro intel meteor lake
+sof-audio-pci-intel-mtl 0000:00:1f.3: no matching blob for sample rate
+-> wait for new ubuntu kernel 6.10 + fixed sof-hda-generic-4ch.tplg or sof release 2.1
