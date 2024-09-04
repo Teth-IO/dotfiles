@@ -14,9 +14,12 @@ moins :
 os-tree non compatible systemd-boot
 
 userland :
+Rien a faire, les images universal blue on une tres bonne experience utilisateurs
 
+Problemes :
 --[ WIP nextcloud compte en ligne pour gnome
-pas possible d'ignorer le cert auto signe pour lie nextcloud a gnome en compte en ligne (marchais sous bluefin)
+pas possible d'ignorer le cert auto signe pour lier nextcloud a gnome en compte en ligne (marchais sous bluefin)
+----[ notes :
 /etc/pki/ca-trust/source/anchors/ et non pas /usr/share/...
 update-ca-trust et non pas update-ca-certificates
 -> revoir qund nextcloud reinstaller sous nextcloud-snap
