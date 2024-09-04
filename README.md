@@ -45,11 +45,11 @@ Eléments principaux :
 
 => [liste des commandes](./old%20arch/cheatsheet.txt)
 
-![Screenshot 1](./old%20arch/Images/1.png)
+![Screenshot 1](./ZZold%20arch/Images/1.png)
 
-![Screenshot 2](./old%20arch/Images/2.png)
+![Screenshot 2](./ZZold%20arch/Images/2.png)
 
-![Screenshot 3](./old%20arch/Images/3.png)
+![Screenshot 3](./ZZold%20arch/Images/3.png)
 
-![Screenshot 4](./old%20arch/Images/5.png)
+![Screenshot 4](./ZZold%20arch/Images/5.png)
 </details>
