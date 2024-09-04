@@ -21,18 +21,21 @@ Les filter lists Easy & AdGuard complémentaire
 --------------------- customization CSS ---------------------
 
 https://github.com/christorange/VerticalFox
+creer un dossier chrome a la racine du dossier du profile (about:profiles)
+pour flatpak : ~/.var/app/io.gitlab.librewolf-community/dossierprofile
 
 Couleur :
-primaire : #302020
+primaire noir : #202020
+primaire rouge : #302020
 secondaire : #3f3f3f
 hovering : #101010
 
 userChrome.css :
 ----------------
 # modifier
---bg: #302020;
+--bg: #202020;
 --urlbar-bg: #3f3f3f;
---urldrop-bg: #302020;
+--urldrop-bg: #202020;
 
 # depuis la version 126 :
 remplacer --urlbar-toolbar-height with --urlbar-container-height
@@ -47,5 +50,5 @@ sidebery css :
 --tabs-bg-hover: #101010 !important;
 --tabs-activated-bg: #3f3f3f !important;
 # dans sidebery modifier :
---toolbar-bg: #302020
---frame-bg: #302020
+--toolbar-bg: #202020
+--frame-bg: #202020
