@@ -1,7 +1,7 @@
 # dotfiles
 
 <details>
-<summary><b>Windows hardened gaming station<summary><b>
+<summary><b>Windows hardened gaming station</b></summary>
 
 Renforcement de windows :
  - Au niveau de l'OS avec la sécurité windows (HVCI, DEP, CET, ASLR, sandboxing de defender... )
