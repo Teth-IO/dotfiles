@@ -1,6 +1,16 @@
 # dotfiles
 
 <details>
+<summary><b>Windows hardened gaming station<summary><b>
+
+Renforcement de windows :
+ - Au niveau de l'OS avec la sécurité windows (HVCI, DEP, CET, ASLR, sandboxing de defender... )
+ - Un contrôle des fonctionnalités avec les Group Policy
+ - Si besoin d'app, préférer les UWP (windows store) qui bénéficient, entre autre, d'un sandboxing (AppContainer) et ne dépendent plus de l'api win32
+
+</details>
+
+<details>
 <summary><b>conf web browser librewolf</b></summary>
 
 conf perso librewolf<br />
@@ -16,22 +26,12 @@ zero maintenance et presque zero config<br />
 
 ------------------------------------- OBSOLÈTE --------------------------------------
 
+=> [old dotfiles](./ZZold%20-%20dotfiles/)
+
 <details>
-<summary><b>vieille conf arch linux</b></summary>
+<summary><b>vieille conf sway sous arch linux</b></summary>
 
-Ancien setup pour ArchLinux renforce (avant de passer aux distro immutables)
-
-Sécurité :
-
-- kernel : linux-hardened en lockdown<br />
-=>! revoir pour chercher la source d'upsstream et la KSPP
-- Chiffrement : tous sous LUKS2, seule l'UKI est exposée mais verifier par secure-boot<br />
-=>! revoir pour implémenter systemd-cryptenroll (dechiffrement LUKS non plus avec mot de passe mais clef FIDO2)
-- MAC : AppArmor<br />
-=>! revoir pour passer à SELinux<br />
-- Firewall : Firewalld
-- blacklisting de plusieurs modules de kernel et hardening de divers paramètres du kernel en plus
-- Hardened malloc, appliqué pour l'ensemble du système
+Ancien setup pour ArchLinux renforce sous sway
 
 Eléments principaux :
   
@@ -41,7 +41,6 @@ Eléments principaux :
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 
-=> [installation de a à z](./old%20arch/installation.txt)
 
 => [liste des commandes](./old%20arch/cheatsheet.txt)
 
@@ -52,4 +51,10 @@ Eléments principaux :
 ![Screenshot 3](./ZZold%20arch/Images/3.png)
 
 ![Screenshot 4](./ZZold%20arch/Images/5.png)
+</details>
+
+<details>
+<summary><b>vieille confe i3 sous qubes OS</b></summary>
+
+vieille conf i3, rofi, theme et icones pour dpi 3k
 </details>

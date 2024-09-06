@@ -1,0 +1,115 @@
+##################################################
+#### Installation du rice et des utilitaires #####
+##################################################
+
+#activer le ssh
+systemctl start sshd
+
+#première partie du shell
+pacman -S sway waybar mako kitty git xorg-xwayland wofi qt5-wayland light wl-copy
+
+#FiraCode Nerd Font
+su *user*
+git clone  https://aur.archlinux.org/nerd-fonts-fira-code.git
+cd nerd-fonts-fira-code
+makepkg -si
+
+#prezto
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+/en une commande
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+/ignorer les erreurs de fichier existant, on remplace a la fin les liens symbolique dans ~ par les deux .zsh du dépôt
+
+#starship
+pacman -S starship
+zsh
+//et profiter de la beauté du nouveau shell
+
+#theme powerlevel10k :
+-> ajouter à ~/.zpreztorc (partie prompt) : zstyle ':prezto:module:prompt' theme 'powerlevel10k'
+
+#utilitaires
+pacman -S ripgrep imv fzf less ranger htop neofetch python-pip grim libreoffice-fresh
+pip install pillow
+pacman -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps
+
+#Navigateur
+pacman -S firefox
+
+#daemon de fond d'ecran: wpaperd
+git clone https://aur.archlinux.org/wpaperd.git
+cd wpaperd
+makepkg -si
+-> modifier le fichier output.conf avec les bons paramètres
+
+#son
+pacman -S pipewire-pulse alsa-utils
+-> alsamixer pour gérer le son (speaker et pcm au max, master pour gérer le volume)
+
+#chiffrement des requêtes DNS
+sudo pacman -S dnscrypt-proxy bind
+=> modifier /etc/dnscrypt-proxy/dnscrypt-proxy.toml en fonction de ses besoins
+(pour moi juste autoriser les serveurs sous ipv6 en imposer le DNSSEC)
+=> ajouter un fichier /etc/NetworkManager/conf.d/dns.conf qui contient:
+[main]
+dns=none
+=> modifer /etc/resolv.conf comme suit:
+nameserver ::1
+nameserver 127.0.0.1
+//l'activer au démarrage
+sudo systemctl enable dnscrypt-proxy
+//et l'activer maintenant sinon plus de dns
+sudo systemctl start dnscrypt-proxy
+
+#outils pour vérifier la santé du disque dur
+sudo pacman -S smartmontools
+=> voir https://wiki.archlinux.org/title/S.M.A.R.T._(Fran%C3%A7ais) pour les test
+
+#installation du lock screen
+git clone https://aur.archlinux.org/swaylock-effects-git.git
+cd swaylock-effects
+makepkg -si
+
+Fira Code Nerd Fonts compatible -> faire p10k configure depuis kitty
+  -> tout les icones doivent apparaitres
+  -> 1 lean -> 1 unicode -> 1 256 coleurs -> 2 24h -> 2 two ligne -> dotted -> no frame -> light? -> compact -> many icons -> concise -> transient -> verbose? -> yes
+(modifier .p10k.zsh comme ci-dessous ou utiliser le fichier du dépôt)
+vim .p10k.zsh
+-> left prompt elements :
+	-> line 1 :
+	os-icon
+
+-> right prompt elements :
+	-> line 1 :
+	Commenté : command_execution_time
+	load
+	ram
+	-> line 2 :
+	battery
+
+!!!en cas d'erreur dans les fichier .zshenv et/ou .zshrc au démarrage les supprimer et les recréer en copiant le contenu avec éditeur de texte
+!!!en cas d'erreur de sway au démarrage (permsision denied) installer polkit -> sudo pacman -S polkit
+
+#pour ne pas dépendre de RTC du BIOS : NTS
+
+#editeur astronvim
+git clone https://aur.archlinux.org/astronvim.git
+cd astronvim
+makepkg -si
+
+#pour pc portable
+sudo pacman -S tlp
+sudo systemctl enable tlp
+sudo systemctl start tlp
+//pour les thinkpad la commande tlp-stat -b indique les modules de kernel a ajouté
+//pacman -S 'le module kernel indiqué'
+
+#bluetooth
+pacman -S bluez bluez-utils
+yay -S bluetuith
+-> pour se connecter à un périphérique :
+systemctl start bluetooth.service
+bluetuith

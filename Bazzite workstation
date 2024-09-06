@@ -18,6 +18,10 @@ Rien a faire, les images universal blue on une tres bonne experience utilisateur
 echo 'set completion-ignore-case On' >> ~/.inputrc
 
 Problemes :
+
+revoir override adwaita pour libreoffice :
+flatpak override --user --env=GTK_THEME=Adwaita:dark org.libreoffice.LibreOffice
+
 --[ WIP nextcloud compte en ligne pour gnome
 pas possible d'ignorer le cert auto signe pour lier nextcloud a gnome en compte en ligne (marchais sous bluefin)
 ----[ notes :
