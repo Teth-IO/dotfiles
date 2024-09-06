@@ -15,6 +15,7 @@ os-tree non compatible systemd-boot
 
 userland :
 Rien a faire, les images universal blue on une tres bonne experience utilisateurs
+echo 'set completion-ignore-case On' >> ~/.inputrc
 
 Problemes :
 --[ WIP nextcloud compte en ligne pour gnome
