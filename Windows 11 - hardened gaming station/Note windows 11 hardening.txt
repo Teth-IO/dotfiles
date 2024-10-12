@@ -2,6 +2,7 @@
 #### Sécurité #####
 ###################
 
+https://learn.microsoft.com/en-us/windows/security/book/
 Logiciel -> App UWP : sandboxing par AppContainer
 Matériel : Sécurité basé sur la virtualisation
 
