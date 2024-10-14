@@ -23,6 +23,7 @@ sudo nano /etc/ublue-update/ublue-update.toml
 dbus_notify = false to dbus_notify = true
 
 ujust bazzite-cli
+-> bling on
 
 --[ Problemes :
 
@@ -31,4 +32,4 @@ flatpak override --user --env=GTK_THEME=Adwaita:dark org.libreoffice.LibreOffice
 
 # WIP pas de son/micro intel meteor lake
 sof-audio-pci-intel-mtl 0000:00:1f.3: no matching blob for sample rate
--> wait for new ubuntu kernel 6.10 + fixed sof-hda-generic-4ch.tplg or sof release 2.1
+-> rebase bazzite en testing
