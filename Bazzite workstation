@@ -1,6 +1,6 @@
-Note pour bazzite :
+####### bazzite #######
 
-plus :
+--[ les plus :
 immutable
 auto update transactionnelle
 secure boot (avec MOK)
@@ -12,7 +12,7 @@ wayland et pipewire
 zram
 sous btrfs avec compression
 
-moins :
+--[ les moins :
 pas systemd-boot (ostree non compatible)
 pas sous musl avec llvm/clang
 pas de x86-64-v3 en vue 
