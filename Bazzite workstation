@@ -10,6 +10,7 @@ FDE :
   Install sous LUKS
   une fois dans le system # ujust setup-luks-tpm-unlock
 zram
+trim
 sous btrfs avec compression
 wayland et pipewire
 centrer sur l'experience utilisateur 
