@@ -16,6 +16,7 @@ sous btrfs avec compression
 pas systemd-boot (ostree non compatible)
 pas sous musl avec llvm/clang
 pas de x86-64-v3 en vue 
+pas rolling release
 
 --[ userland :
 
