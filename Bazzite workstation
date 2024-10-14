@@ -1,6 +1,7 @@
 ####### bazzite #######
 
 --[ les plus :
+
 immutable
 auto update transactionnelle
 secure boot (avec MOK)
@@ -8,11 +9,13 @@ selinux enabled et enforcing
 FDE :
   Install sous LUKS
   une fois dans le system # ujust setup-luks-tpm-unlock
-wayland et pipewire
 zram
 sous btrfs avec compression
+wayland et pipewire
+centrer sur l'experience utilisateur 
 
 --[ les moins :
+
 pas systemd-boot (ostree non compatible)
 pas sous musl avec llvm/clang
 pas de x86-64-v3 en vue 
