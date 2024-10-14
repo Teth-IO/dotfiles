@@ -12,23 +12,23 @@ wayland et pipewire
 
 moins :
 os-tree non compatible systemd-boot
+pas sous musl et clang
 
-userland :
-Rien a faire, les images universal blue on une tres bonne experience utilisateurs
+--[ userland :
+
 echo 'set completion-ignore-case On' >> ~/.inputrc
 
-Problemes :
+sudo nano /etc/ublue-update/ublue-update.toml
+#nChange this line inside of the file:
+dbus_notify = false to dbus_notify = true
 
-revoir override adwaita pour libreoffice :
+ujust bazzite-cli
+
+--[ Problemes :
+
+# revoir override adwaita pour libreoffice :
 flatpak override --user --env=GTK_THEME=Adwaita:dark org.libreoffice.LibreOffice
 
---[ WIP nextcloud compte en ligne pour gnome
-pas possible d'ignorer le cert auto signe pour lier nextcloud a gnome en compte en ligne (marchais sous bluefin)
-----[ notes :
-/etc/pki/ca-trust/source/anchors/ et non pas /usr/share/...
-update-ca-trust et non pas update-ca-certificates
--> revoir qund nextcloud reinstaller sous nextcloud-snap
-
---[ WIP pas de son/micro intel meteor lake
+# WIP pas de son/micro intel meteor lake
 sof-audio-pci-intel-mtl 0000:00:1f.3: no matching blob for sample rate
 -> wait for new ubuntu kernel 6.10 + fixed sof-hda-generic-4ch.tplg or sof release 2.1
