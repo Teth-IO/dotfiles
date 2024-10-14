@@ -9,10 +9,13 @@ FDE :
   Install sous LUKS
   une fois dans le system # ujust setup-luks-tpm-unlock
 wayland et pipewire
+zram
+sous btrfs avec compression
 
 moins :
-os-tree non compatible systemd-boot
-pas sous musl et clang
+pas systemd-boot (ostree non compatible)
+pas sous musl avec llvm/clang
+pas de x86-64-v3 en vue 
 
 --[ userland :
 
@@ -25,11 +28,7 @@ dbus_notify = false to dbus_notify = true
 ujust bazzite-cli
 -> bling on
 
---[ Problemes :
+--[ Problèmes :
 
 # revoir override adwaita pour libreoffice :
 flatpak override --user --env=GTK_THEME=Adwaita:dark org.libreoffice.LibreOffice
-
-# WIP pas de son/micro intel meteor lake
-sof-audio-pci-intel-mtl 0000:00:1f.3: no matching blob for sample rate
--> rebase bazzite en testing
