@@ -30,9 +30,6 @@ sudo nano /etc/ublue-update/ublue-update.toml
 #nChange this line inside of the file:
 dbus_notify = false to dbus_notify = true
 
-ujust bazzite-cli
--> bling on
-
 --[ Problèmes :
 
 # revoir override adwaita pour libreoffice :
