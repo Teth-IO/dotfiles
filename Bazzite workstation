@@ -30,6 +30,8 @@ sudo nano /etc/ublue-update/ublue-update.toml
 #nChange this line inside of the file:
 dbus_notify = false to dbus_notify = true
 
+echo "alias sudo='run0'" >> ~/.bashrc
+
 --[ Problèmes :
 
 # revoir override adwaita pour libreoffice :
