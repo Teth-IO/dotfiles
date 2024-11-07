@@ -1,5 +1,7 @@
 # dotfiles
 
+------------------------------------- CURRENT --------------------------------------
+
 <details>
 <summary><b>Windows hardened gaming station</b></summary>
 
