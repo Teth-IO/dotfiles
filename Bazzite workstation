@@ -17,7 +17,7 @@ centrer sur l'experience utilisateur
 
 --[ les moins :
 
-pas systemd-boot (ostree non compatible)
+pas systemd-boot https://github.com/ostreedev/ostree/issues/1719
 pas sous musl avec llvm/clang
 pas de x86-64-v3 en vue 
 pas rolling release
