@@ -31,8 +31,3 @@ sudo nano /etc/ublue-update/ublue-update.toml
 dbus_notify = false to dbus_notify = true
 
 echo "alias sudo='run0'" >> ~/.bashrc
-
---[ Problèmes :
-
-# revoir override adwaita pour libreoffice :
-flatpak override --user --env=GTK_THEME=Adwaita:dark org.libreoffice.LibreOffice
