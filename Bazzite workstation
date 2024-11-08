@@ -31,3 +31,7 @@ sudo nano /etc/ublue-update/ublue-update.toml
 dbus_notify = false to dbus_notify = true
 
 echo "alias sudo='run0'" >> ~/.bashrc
+
+# pour installer un root CA
+/etc/pki/ca-trust/source/anchors/
+sudo update-ca-trust
