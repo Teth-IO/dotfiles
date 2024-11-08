@@ -4,7 +4,6 @@ LibreWolf
 
 https://gitlab.com/librewolf-community/settings/-/wikis/
 suppression des cookies et historique en quittant => withelisting 
-DNS cloudflare pour ECH
 
 blocage de l'autoplay :
 -----------------------
@@ -22,7 +21,7 @@ Les filter lists Easy & AdGuard complémentaire
 
 https://github.com/christorange/VerticalFox
 creer un dossier chrome a la racine du dossier du profile (about:profiles)
-pour flatpak : ~/.var/app/io.gitlab.librewolf-community/dossierprofile
+pour flatpak : ~/.var/app/io.gitlab.librewolf-community/.librewolf/*.default-default
 
 Couleur :
 primaire noir : #202020
