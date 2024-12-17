@@ -16,7 +16,6 @@ Renforcement de windows :
 <summary><b>conf web browser librewolf</b></summary>
 
 conf perso librewolf<br />
-vertical fox et custom color<br />
 </details>
 
 <details>
