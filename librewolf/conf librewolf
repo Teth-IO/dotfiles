@@ -19,6 +19,5 @@ Les filter lists Easy & AdGuard complémentaire
 
 sidebar :
 ---------
-dans about:aconfig :
 sidebar.revamp = true
 sidebar.verticalTabs = true
