@@ -17,34 +17,8 @@ uBlock :
 medium mode -> https://github.com/gorhill/uBlock/wiki/Blocking-mode:-medium-mode
 Les filter lists Easy & AdGuard complémentaire
 
---------------------- customization CSS ---------------------
-
-https://github.com/christorange/VerticalFox
-creer un dossier chrome a la racine du dossier du profile (about:profiles)
-pour flatpak : ~/.var/app/io.gitlab.librewolf-community/.librewolf/*.default-default
-
-Couleur :
-primaire noir : #202020
-primaire rouge : #302020
-secondaire : #3f3f3f
-hovering : #101010
-
-userChrome.css :
-----------------
-# modifier
---bg: #202020;
---urlbar-bg: #3f3f3f;
---urldrop-bg: #202020;
-
-userContent.css :
------------------
-# voir fichier
-
-sidebery css :
---------------
-# modifier 
---tabs-bg-hover: #101010 !important;
---tabs-activated-bg: #3f3f3f !important;
-# dans sidebery modifier :
---toolbar-bg: #202020
---frame-bg: #202020
+sidebar :
+---------
+dans about:aconfig :
+sidebar.revamp = true
+sidebar.verticalTabs = true
