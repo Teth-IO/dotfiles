@@ -1,14 +1,15 @@
 # dotfiles
 
+Conf perso
+
 ------------------------------------- CURRENT --------------------------------------
 
 <details>
-<summary><b>Windows hardened gaming station</b></summary>
+<summary><b>Windows hardening</b></summary>
 
 Renforcement de windows :
  - Au niveau de l'OS avec la sécurité windows (HVCI, DEP, CET, ASLR, sandboxing de defender... )
  - Un contrôle des fonctionnalités avec les Group Policy
- - Si besoin d'app, préférer les UWP (windows store) qui bénéficient, entre autre, d'un sandboxing (AppContainer) et ne dépendent plus de l'api win32
 
 </details>
 
@@ -19,7 +20,7 @@ conf perso librewolf<br />
 </details>
 
 <details>
-<summary><b>conf workstation bazzite</b></summary>
+<summary><b>conf bazzite</b></summary>
 
 note pour bazzite<br />
 zero maintenance et presque zero config<br />
