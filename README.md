@@ -13,18 +13,9 @@ Renforcement de windows :
 
 </details>
 
-<details>
-<summary><b>conf web browser librewolf</b></summary>
+=> conf librewolf
 
-conf perso librewolf<br />
-</details>
-
-<details>
-<summary><b>conf bazzite</b></summary>
-
-note pour bazzite<br />
-zero maintenance et presque zero config<br />
-</details>
+=> conf bazzite
 
 ------------------------------------- OBSOLÈTE --------------------------------------
 
