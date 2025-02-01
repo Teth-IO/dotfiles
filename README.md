@@ -5,7 +5,7 @@ Conf perso
 ------------------------------------- CURRENT --------------------------------------
 
 <details>
-<summary><b>Windows hardening</b></summary>
+<summary><b>Windows 11 hardening</b></summary>
 
 Renforcement de windows :
  - Au niveau de l'OS avec la sécurité windows (HVCI, DEP, CET, ASLR, sandboxing de defender... )
@@ -13,9 +13,11 @@ Renforcement de windows :
 
 </details>
 
-=> conf librewolf
+<details>
+<summary><b>conf librewolf</b></summary>
+ - blocage des autoplay et activation de la sidebar
 
-=> conf bazzite
+</details>
 
 ------------------------------------- OBSOLÈTE --------------------------------------
 
@@ -34,16 +36,6 @@ Eléments principaux :
 - Daemon de notification: mako
 - Ecran de verouillage: swaylock-effect
 
-
-=> [liste des commandes](./old%20arch/cheatsheet.txt)
-
-![Screenshot 1](./ZZold%20arch/Images/1.png)
-
-![Screenshot 2](./ZZold%20arch/Images/2.png)
-
-![Screenshot 3](./ZZold%20arch/Images/3.png)
-
-![Screenshot 4](./ZZold%20arch/Images/5.png)
 </details>
 
 <details>
