@@ -6,9 +6,11 @@ Conf perso
 
 <details>
 <summary><b>Windows 11 hardening</b></summary>
+ 
 Renforcement de windows :
  - Au niveau de l'OS avec la sécurité windows (HVCI, DEP, CET, ASLR, sandboxing de defender... )
  - Un contrôle des fonctionnalités avec les Group Policy
+
 </details>
 
 <details>
