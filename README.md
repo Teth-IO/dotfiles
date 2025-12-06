@@ -1,8 +1,12 @@
 # dotfiles
 
-Conf perso
+<details>
+<summary><b>conf librewolf</b></summary>
+ - blocage des autoplay et activation de la sidebar
 
-------------------------------------- CURRENT --------------------------------------
+</details>
+
+=> [old dotfiles](./ZZold%20-%20dotfiles/)
 
 <details>
 <summary><b>Windows 11 hardening</b></summary>
@@ -12,16 +16,6 @@ Renforcement de windows :
  - Un contrôle des fonctionnalités avec les Group Policy
 
 </details>
-
-<details>
-<summary><b>conf librewolf</b></summary>
- - blocage des autoplay et activation de la sidebar
-
-</details>
-
-------------------------------------- OBSOLÈTE --------------------------------------
-
-=> [old dotfiles](./ZZold%20-%20dotfiles/)
 
 <details>
 <summary><b>vieille conf sway sous arch linux</b></summary>
