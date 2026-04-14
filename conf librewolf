@@ -21,3 +21,7 @@ sidebar :
 ---------
 sidebar.revamp = true
 sidebar.verticalTabs = true
+
+bug xdg file-picket :
+---------------------
+widget.use-xdg-desktop-portal.file-picker = 0 (default à 2 mais le file manager ne pop pas)
