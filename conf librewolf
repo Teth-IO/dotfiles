@@ -1,10 +1,5 @@
 --------------------- Conf de Navigateur ---------------------
 
-LibreWolf
-
-https://gitlab.com/librewolf-community/settings/-/wikis/
-suppression des cookies et historique en quittant => withelisting 
-
 blocage de l'autoplay :
 -----------------------
 media.autoplay.default = 5 [0:allow; 1:blockAudible; 5:blockAll]
@@ -25,3 +20,7 @@ sidebar.verticalTabs = true
 bug xdg file-picket :
 ---------------------
 widget.use-xdg-desktop-portal.file-picker = 0 (default à 2 mais le file manager ne pop pas)
+
+relooking 157 :
+---------------
+browser.nova.enabled = false
